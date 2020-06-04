@@ -1,11 +1,18 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Curry</title>
+        <title>Curry Linux</title>
         <link>https://example.com/</link>
         <description>关于 LoveIt 主题</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Jun 2020 17:27:51 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Jun 2020 21:50:22 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Docker_Compose部署Nexus</title>
+    <link>https://example.com/docker_compose%E9%83%A8%E7%BD%B2nexus/</link>
+    <pubDate>Thu, 04 Jun 2020 21:50:22 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://example.com/docker_compose%E9%83%A8%E7%BD%B2nexus/</guid>
+    <description><![CDATA[No.1 Nexus 基本概念之组件 1 2 3 4 简单说明下Nexus,理解为私服仓库:本地maven私服加快构建速度 代理仓库:将公网等第三方提供的仓库代理到本地.]]></description>
+</item><item>
     <title>Docker和它兄弟Dockerer_Compose</title>
     <link>https://example.com/docker%E5%92%8C%E5%AE%83%E5%85%84%E5%BC%9Fdockerer_compose/</link>
     <pubDate>Thu, 04 Jun 2020 17:27:51 &#43;0800</pubDate>
