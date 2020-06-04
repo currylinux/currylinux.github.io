@@ -2,19 +2,19 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	
 	<sitemap>
-	   	<loc>https://currylinux.github.io/en/sitemap.xml</loc>
+	   	<loc>https://example.com/en/sitemap.xml</loc>
 		
 	</sitemap>
 	
 	<sitemap>
-	   	<loc>https://currylinux.github.io/zh-cn/sitemap.xml</loc>
+	   	<loc>https://example.com/zh-cn/sitemap.xml</loc>
 		
 	   	<lastmod>2020-06-04T14:48:33+08:00</lastmod>
 		
 	</sitemap>
 	
 	<sitemap>
-	   	<loc>https://currylinux.github.io/fr/sitemap.xml</loc>
+	   	<loc>https://example.com/fr/sitemap.xml</loc>
 		
 	</sitemap>
 	

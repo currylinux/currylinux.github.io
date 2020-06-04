@@ -11,7 +11,8 @@
 
 ##### 第二章 搭建视频连接及其它方式说明
 ```
-亲测可行的B站视频连接:https://www.bilibili.com/video/BV1Yb411a7ty/?spm_id_from=333.788.videocard.0
+亲测可行的B站视频连接:
+https://www.bilibili.com/video/BV1q4411i7gL?from=search&seid=3554094098849384530
 只要正常按照此视频步骤搭建都可以轻松成功,国内的朋友可以通过码云(gitee.com)的方式也尝试下.
 最后祝愿大家都拥有一个属于自己的个人博客!
 ```

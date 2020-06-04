@@ -61,4 +61,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: https://currylinux.github.io/fr/sitemap.xml
+Sitemap: https://example.com/fr/sitemap.xml

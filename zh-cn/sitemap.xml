@@ -2,44 +2,44 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://currylinux.github.io/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://example.com/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://currylinux.github.io/en/"
+                        href="https://example.com/en/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="fr"
-                        href="https://currylinux.github.io/fr/"
+                        href="https://example.com/fr/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="https://currylinux.github.io/"
+                    href="https://example.com/"
                     /></url><url>
-            <loc>https://currylinux.github.io/hugo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%88%86%E4%BA%AB/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://currylinux.github.io/posts/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://currylinux.github.io/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://example.com/hugo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%88%86%E4%BA%AB/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://example.com/posts/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://example.com/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://currylinux.github.io/en/categories/"
+                        href="https://example.com/en/categories/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="fr"
-                        href="https://currylinux.github.io/fr/categories/"
+                        href="https://example.com/fr/categories/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="https://currylinux.github.io/categories/"
+                    href="https://example.com/categories/"
                     /></url><url>
-            <loc>https://currylinux.github.io/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://example.com/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://currylinux.github.io/en/tags/"
+                        href="https://example.com/en/tags/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="fr"
-                        href="https://currylinux.github.io/fr/tags/"
+                        href="https://example.com/fr/tags/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="https://currylinux.github.io/tags/"
+                    href="https://example.com/tags/"
                     /></url></urlset>
