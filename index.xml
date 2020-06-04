@@ -14,10 +14,10 @@
     <description><![CDATA[No.1 脚本化部署安装docker 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 [root@xxx ~]# cat docker.sh #!/bin/bash DOCKER_VERSION=docker-ce-18.09.9 DOCKER_CLIENT=docker-ce-cli-18.09.9 # remove]]></description>
 </item><item>
     <title>Hugo你的专属Blog</title>
-    <link>https://example.com/hugo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%88%86%E4%BA%AB/</link>
+    <link>https://example.com/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</link>
     <pubDate>Thu, 04 Jun 2020 14:48:33 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/hugo%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B%E5%88%86%E4%BA%AB/</guid>
+    <guid>https://example.com/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</guid>
     <description><![CDATA[第一章 简单说明 1 2 3 首先简单说明下,搭建过程容易,重点是主题的选择,下面也会附上我使用的主题地址. 有一点Linux基础的话,相对操作要容易一]]></description>
 </item></channel>
 </rss>
