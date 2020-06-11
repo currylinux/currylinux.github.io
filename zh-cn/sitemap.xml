@@ -2,7 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://example.com/</loc><lastmod>2020-06-04T21:50:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://example.com/</loc><lastmod>2020-06-04T21:50:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://example.com/en/"
@@ -15,10 +15,10 @@
                     hreflang="zh-cn"
                     href="https://example.com/"
                     /></url><url>
-            <loc>https://example.com/docker_compose%E9%83%A8%E7%BD%B2nexus/</loc><lastmod>2020-06-04T21:50:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://example.com/posts/</loc><lastmod>2020-06-04T21:50:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://example.com/docker%E5%92%8C%E5%AE%83%E5%85%84%E5%BC%9Fdockerer_compose/</loc><lastmod>2020-06-04T17:27:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://example.com/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://example.com/docker_compose%E9%83%A8%E7%BD%B2nexus/</loc><lastmod>2020-06-04T21:50:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://example.com/posts/</loc><lastmod>2020-06-04T21:50:22&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://example.com/docker%E5%92%8C%E5%AE%83%E5%85%84%E5%BC%9Fdockerer_compose/</loc><lastmod>2020-06-04T17:27:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://example.com/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>https://example.com/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
