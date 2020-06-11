@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>K8s单机部署Jenkins - Curry Linux</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="K8s单机部署Jenkins" />
+<meta property="og:description" content="No.1 kubeadm安装单机版k8s前期准备 1个节点,Centos7.7系统,在节点上添加hosts信息 1 2 cat /etc/hosts 10.8.8.8 kubernetes-master 禁用防火墙,并且禁用SELI" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" />
+<meta property="og:image" content="https://example.com/logo.png"/>
+<meta property="article:published_time" content="2020-06-12T02:55:29+08:00" />
+<meta property="article:modified_time" content="2020-06-12T02:55:29+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://example.com/logo.png"/>
+
+<meta name="twitter:title" content="K8s单机部署Jenkins"/>
+<meta name="twitter:description" content="No.1 kubeadm安装单机版k8s前期准备 1个节点,Centos7.7系统,在节点上添加hosts信息 1 2 cat /etc/hosts 10.8.8.8 kubernetes-master 禁用防火墙,并且禁用SELI"/>
+<meta name="application-name" content="Curry Linux">
+<meta name="apple-mobile-web-app-title" content="Curry Linux"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/curry1.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" /><link rel="prev" href="https://example.com/docker_compose%E9%83%A8%E7%BD%B2nexus/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "K8s单机部署Jenkins",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  2884 ,
+        "url": "https:\/\/example.com\/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins\/","datePublished": "2020-06-12T02:55:29+08:00","dateModified": "2020-06-12T02:55:29+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Curry"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Curry Linux">Curry Linux</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Curry Linux">Curry Linux</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">K8s单机部署Jenkins</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Curry</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-12">2020-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2884 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" class="leancloud_visitors" data-flag-title="K8s单机部署Jenkins">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#no1-kubeadm安装单机版k8s前期准备">No.1 kubeadm安装单机版k8s前期准备</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#1个节点centos77系统在节点上添加hosts信息">1个节点,Centos7.7系统,在节点上添加hosts信息</a></li>
+                    <li><a href="#禁用防火墙并且禁用selinux">禁用防火墙,并且禁用SELINUX</a></li>
+                    <li><a href="#由于开启内核-ipv4-转发需加载-br_netfilter-模块并创建文件etcsysctldk8sconf">由于开启内核 ipv4 转发需加载 br_netfilter 模块,并创建文件/etc/sysctl.d/k8s.conf</a></li>
+                    <li><a href="#安装-ipvs创建脚本保证在节点重启后能自动加载所需模块">安装 ipvs,创建脚本,保证在节点重启后能自动加载所需模块.</a></li>
+                    <li><a href="#确保节点上已安装-ipset-软件包为便于查看-ipvs-的代理规则安装管理工具-ipvsadm同步服务器时间公有云基本都会自带此功能">确保节点上已安装 ipset 软件包,为便于查看 ipvs 的代理规则,安装管理工具 ipvsadm,同步服务器时间,公有云基本都会自带此功能</a></li>
+                    <li><a href="#关闭swap分区相关操作有的公有云同样也已经禁用修改etcsysctldk8sconf添加下面一行docker自动化安装部分参考本博客">关闭swap分区相关操作,有的公有云同样也已经禁用,修改/etc/sysctl.d/k8s.conf添加下面一行,docker自动化安装部分参考本博客</a></li>
+                    <li><a href="#cgroup-驱动以及配置docker镜像和指定datadocker目录为docker-root-dir启动-docker并设置开机自启">cgroup 驱动以及配置Docker镜像,和指定/data/docker目录为Docker Root Dir,启动 Docker并设置开机自启</a></li>
+                    <li><a href="#继续来安装-kubeadm通过指定yum源的方式来进行安装并且推荐国内外两种源的方式">继续来安装 Kubeadm,通过指定yum源的方式来进行安装.并且推荐国内外两种源的方式</a></li>
+                    <li><a href="#然后安装-kubeadmkubeletkubectl查看版本是否正确并将kubelet设置成开机启动">然后安装 kubeadm、kubelet、kubectl,查看版本是否正确,并将kubelet设置成开机启动</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#no2-kubeadm初始化相关步骤">No.2 kubeadm初始化相关步骤</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#初始化集群在master节点配置kubeadm初始化文件可以通过如下命令导出默认的初始化配置并根据需求修改配置flannel-网络插件需要将networkingpodsubnet设为102440016">初始化集群,在master节点配置kubeadm初始化文件,可以通过如下命令导出默认的初始化配置,并根据需求修改配置,flannel 网络插件需要将networking.podSubnet设为10.244.0.0/16</a></li>
+                    <li><a href="#上面的资源清单的文档较杂要想完整了解上面的资源对象对应的属性可查看对应godoc文档-httpsgodocorgk8siokubernetescmdkubeadmappapiskubeadmv1beta2">上面的资源清单的文档较杂,要想完整了解上面的资源对象对应的属性,可查看对应godoc文档: <a href="https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2">https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2</a></a></li>
+                    <li><a href="#使用上面的配置文件进行初始化并拷贝kubeconfig文件">使用上面的配置文件进行初始化,并拷贝kubeconfig文件</a></li>
+                    <li><a href="#此处我是单机k8s部署如果是集群的话需要添加对应的node节点">此处我是单机k8s部署,如果是集群的话,需要添加对应的node节点</a></li>
+                    <li><a href="#join命令如果忘记了上面的-join-命令可以使用命令kubeadm-token-create---print-join-command-重新获取">join命令,如果忘记了上面的 join 命令可以使用命令kubeadm token create &ndash;print-join-command 重新获取.</a></li>
+                    <li><a href="#执行成功后运行get-nodes命令查看是notready状态是因为还没有安装网络插件下面安装网络插件以及多网卡配置相关设置">执行成功后运行get nodes命令查看,是NotReady状态,是因为还没有安装网络插件,下面安装网络插件.以及多网卡配置相关设置</a></li>
+                    <li><a href="#间隔一会查看pod运行状态并且查看node状态并且单节点务必去掉master不允许调度的设置">间隔一会查看Pod运行状态,并且查看node状态,并且单节点务必去掉master不允许调度的设置</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#no3-基于单机版k8s基础之上部署jenkins">No.3 基于单机版k8s基础之上,部署Jenkins</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#部署jenkins">部署jenkins</a></li>
+                    <li><a href="#创建一个service使用nodeport方式暴露端口">创建一个service,使用nodePort方式暴露端口</a></li>
+                    <li><a href="#创建rbac授权">创建RBAC,授权</a></li>
+                    <li><a href="#创建namespace名称空间并且做关键的授权否则会失败">创建namespace,名称空间,并且做关键的授权,否则会失败</a></li>
+                    <li><a href="#最后执行命令创建当前目录下所有yaml清单并且解锁jenkins后完成插件安装等步骤">最后执行命令,创建当前目录下所有yaml清单,并且解锁Jenkins后,完成插件安装等步骤</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h4 id="no1-kubeadm安装单机版k8s前期准备">No.1 kubeadm安装单机版k8s前期准备</h4>
+<h6 id="1个节点centos77系统在节点上添加hosts信息">1个节点,Centos7.7系统,在节点上添加hosts信息</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cat /etc/hosts
+10.8.8.8 kubernetes-master
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="禁用防火墙并且禁用selinux">禁用防火墙,并且禁用SELINUX</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">systemctl stop firewalld
+systemctl disable firewalld
+setenforce 0
+sed -i &#39;s/SELINUX=enforcing/SELINUX=disabled/&#39;  /etc/selinux/config
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="由于开启内核-ipv4-转发需加载-br_netfilter-模块并创建文件etcsysctldk8sconf">由于开启内核 ipv4 转发需加载 br_netfilter 模块,并创建文件/etc/sysctl.d/k8s.conf</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">modprobe br_netfilter
+
+cat &lt;&lt; EOF &gt; /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+EOF
+sysctl -p /etc/sysctl.d/k8s.conf
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="安装-ipvs创建脚本保证在节点重启后能自动加载所需模块">安装 ipvs,创建脚本,保证在节点重启后能自动加载所需模块.</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt; /etc/sysconfig/modules/ipvs.modules <span class="s">&lt;&lt;EOF
+</span><span class="s">#!/bin/bash
+</span><span class="s">modprobe -- ip_vs
+</span><span class="s">modprobe -- ip_vs_rr
+</span><span class="s">modprobe -- ip_vs_wrr
+</span><span class="s">modprobe -- ip_vs_sh
+</span><span class="s">modprobe -- nf_conntrack_ipv4
+</span><span class="s">EOF</span>
+chmod <span class="m">755</span> /etc/sysconfig/modules/ipvs.modules <span class="o">&amp;&amp;</span> bash /etc/sysconfig/modules/ipvs.modules <span class="o">&amp;&amp;</span> lsmod <span class="p">|</span> grep -e ip_vs -e nf_conntrack_ipv4
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="确保节点上已安装-ipset-软件包为便于查看-ipvs-的代理规则安装管理工具-ipvsadm同步服务器时间公有云基本都会自带此功能">确保节点上已安装 ipset 软件包,为便于查看 ipvs 的代理规则,安装管理工具 ipvsadm,同步服务器时间,公有云基本都会自带此功能</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">yum install -y ipset ipvsadm
+yum install chrony -y
+systemctl enable chronyd
+systemctl start chronyd
+chronyc sources
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="关闭swap分区相关操作有的公有云同样也已经禁用修改etcsysctldk8sconf添加下面一行docker自动化安装部分参考本博客">关闭swap分区相关操作,有的公有云同样也已经禁用,修改/etc/sysctl.d/k8s.conf添加下面一行,docker自动化安装部分参考本博客</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">swapoff -a
+vm.swappiness=0
+sysctl -p /etc/sysctl.d/k8s.conf
+https://currylinux.github.io/docker%E5%92%8C%E5%AE%83%E5%85%84%E5%BC%9Fdockerer_compose/
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="cgroup-驱动以及配置docker镜像和指定datadocker目录为docker-root-dir启动-docker并设置开机自启">cgroup 驱动以及配置Docker镜像,和指定/data/docker目录为Docker Root Dir,启动 Docker并设置开机自启</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">由于默认情况下kubelet使用的cgroupdriver是systemd,所以需要保持docker和kubelet的 cgroupdriver一致,我们这里修改docker的cgroupdriver=systemd.如果不修改docker则需要修改kubelet的启动配置,需要保证两者一致.
+
+mkdir -p /etc/docker
+cat /etc/docker/daemon.json 
+{
+  &#34;exec-opts&#34;: [&#34;native.cgroupdriver=systemd&#34;],
+  &#34;registry-mirrors&#34; : [
+    &#34;https://mirror.gcr.io&#34;,                 #国外使用此仓库
+    &#34;https://ot2k4d59.mirror.aliyuncs.com/&#34;  #国内使用此仓库
+  ],
+  &#34;graph&#34;: &#34;/data/docker&#34;
+}
+
+systemctl start docker
+systemctl enable docker
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="继续来安装-kubeadm通过指定yum源的方式来进行安装并且推荐国内外两种源的方式">继续来安装 Kubeadm,通过指定yum源的方式来进行安装.并且推荐国内外两种源的方式</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">国外yum源:
+cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+------------------------------------------------------------------------
+国内yum源:
+cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
+        http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="然后安装-kubeadmkubeletkubectl查看版本是否正确并将kubelet设置成开机启动">然后安装 kubeadm、kubelet、kubectl,查看版本是否正确,并将kubelet设置成开机启动</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">--disableexcludes 禁掉除了kubernetes之外的别的仓库
+yum install -y kubelet-1.16.2 kubeadm-1.16.2 kubectl-1.16.2 --disableexcludes=kubernetes
+kubeadm version
+systemctl enable --now kubelet
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="no2-kubeadm初始化相关步骤">No.2 kubeadm初始化相关步骤</h4>
+<h6 id="初始化集群在master节点配置kubeadm初始化文件可以通过如下命令导出默认的初始化配置并根据需求修改配置flannel-网络插件需要将networkingpodsubnet设为102440016">初始化集群,在master节点配置kubeadm初始化文件,可以通过如下命令导出默认的初始化配置,并根据需求修改配置,flannel 网络插件需要将networking.podSubnet设为10.244.0.0/16</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"> kubeadm config print init-defaults &gt; kubeadm.yaml
+ 
+ cat kubeadm.yaml 
+apiVersion: kubeadm.k8s.io/v1beta2
+bootstrapTokens:
+- groups:
+  - system:bootstrappers:kubeadm:default-node-token
+  token: abcdef.0123456789abcdef
+  ttl: 24h0m0s
+  usages:
+  - signing
+  - authentication
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: 10.8.8.8       #apiserver节点内网IP
+  bindPort: 6443
+nodeRegistration:
+  criSocket: /var/run/dockershim.sock
+  name: kubernetes-master          #默认读取当前master节点的hostname
+  taints:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+---
+apiServer:
+  timeoutForControlPlane: 4m0s
+apiVersion: kubeadm.k8s.io/v1beta2
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controllerManager: {}
+dns:
+  type: CoreDNS
+etcd:
+  local:
+    dataDir: /var/lib/etcd
+imageRepository: k8s.gcr.io                               #默认为google镜像仓库
+imageRepository: registry.aliyuncs.com/google_containers  #国内修改成阿里镜像源
+kind: ClusterConfiguration
+kubernetesVersion: v1.16.0
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.244.0.0/16         #Pod网段,flannel插件需要使用这个网段    
+  serviceSubnet: 10.96.0.0/12
+scheduler: {}
+---
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+mode: ipvs                                                #kube-proxy模式
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="上面的资源清单的文档较杂要想完整了解上面的资源对象对应的属性可查看对应godoc文档-httpsgodocorgk8siokubernetescmdkubeadmappapiskubeadmv1beta2">上面的资源清单的文档较杂,要想完整了解上面的资源对象对应的属性,可查看对应godoc文档: <a href="https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2">https://godoc.org/k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta2</a></h6>
+<h6 id="使用上面的配置文件进行初始化并拷贝kubeconfig文件">使用上面的配置文件进行初始化,并拷贝kubeconfig文件</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">kubeadm init --config kubeadm.yaml
+[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
+To see the stack trace of this error execute with --v=5 or higher
+[init] Using Kubernetes version: v1.16.2
+[preflight] Running pre-flight checks ........
+mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+........... 
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="此处我是单机k8s部署如果是集群的话需要添加对应的node节点">此处我是单机k8s部署,如果是集群的话,需要添加对应的node节点</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback"> kubeadm join 10.8.8.8:6443 --token abcdef.0123456789abcdef \
+&gt;     --discovery-token-ca-cert-hash sha256:a292e66049e45264f848186d2fa3582dc360f3b5006cc160f137b5d436e078c2
+[preflight] Running pre-flight checks
+[preflight] Reading configuration from the cluster...
+[preflight] FYI: You can look at this config file with &#39;kubectl -n kube-system get cm kubeadm-config -oyaml&#39;
+[kubelet-start] Downloading configuration for the kubelet from the &#34;kubelet-config-1.16&#34; ConfigMap in the kube-system namespace
+[kubelet-start] Writing kubelet configuration to file &#34;/var/lib/kubelet/config.yaml&#34;
+[kubelet-start] Writing kubelet environment file with flags to file &#34;/var/lib/kubelet/kubeadm-flags.env&#34;
+[kubelet-start] Activating the kubelet service
+[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap...
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run &#39;kubectl get nodes&#39; on the control-plane to see this node join the cluster.
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="join命令如果忘记了上面的-join-命令可以使用命令kubeadm-token-create---print-join-command-重新获取">join命令,如果忘记了上面的 join 命令可以使用命令kubeadm token create &ndash;print-join-command 重新获取.</h6>
+<h6 id="执行成功后运行get-nodes命令查看是notready状态是因为还没有安装网络插件下面安装网络插件以及多网卡配置相关设置">执行成功后运行get nodes命令查看,是NotReady状态,是因为还没有安装网络插件,下面安装网络插件.以及多网卡配置相关设置</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">kubectl get nodes
+插件文档:https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+wget https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
+
+搜索到名为kube-flannel-ds-amd64的DaemonSet,在kube-flannel容器下面
+vi kube-flannel.yml
+......
+containers:
+- name: kube-flannel
+  image: quay.io/coreos/flannel:v0.11.0-amd64
+  command:
+  - /opt/bin/flanneld
+  args:
+  - --ip-masq
+  - --kube-subnet-mgr
+  - --iface=eth0  # 如果是多网卡的话，指定内网网卡的名称
+......
+kubectl apply -f kube-flannel.yml  #安装flannel网络插件
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="间隔一会查看pod运行状态并且查看node状态并且单节点务必去掉master不允许调度的设置">间隔一会查看Pod运行状态,并且查看node状态,并且单节点务必去掉master不允许调度的设置</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">kubectl get pods -n kube-system
+NAME                                        READY   STATUS    RESTARTS   AGE
+coredns-5644d7b6d9-gmq7s                    1/1     Running   0          129m
+coredns-5644d7b6d9-slqc7                    1/1     Running   0          129m
+etcd-kubernetes-master                      1/1     Running   0          128m
+kube-apiserver-kubernetes-master            1/1     Running   0          128m
+kube-controller-manager-kubernetes-master   1/1     Running   0          128m
+kube-flannel-ds-amd64-7vk94                 1/1     Running   0          125m
+kube-proxy-fsf7k                            1/1     Running   0          129m
+kube-scheduler-kubernetes-master            1/1     Running   0          128m
+
+kubectl get nodes
+NAME                STATUS   ROLES    AGE    VERSION
+kubernetes-master   Ready    master   130m   v1.16.2
+
+kubectl taint nodes --all node-role.kubernetes.io/master-  #去掉master不能调度的操作.
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="no3-基于单机版k8s基础之上部署jenkins">No.3 基于单机版k8s基础之上,部署Jenkins</h4>
+<h6 id="部署jenkins">部署jenkins</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">创建一个Deployment部署jenkins,保留1个副本.使用镜像jenkins/jenkins:lts,开放端口30080,
+开发slave通信端口30081.volume以hostPath方式挂载到了容器中JENKINS_HOME
+为方便后期管理,单独创建目录如下:/data/k8s-yaml/jenkins
+pwd
+/data/k8s-yaml/jenkins
+
+cat deployment.yaml 
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: jenkins
+  name: jenkins
+  namespace: devops
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: jenkins
+  template:
+    metadata:
+      labels:
+        k8s-app: jenkins
+      namespace: devops
+      name: jenkins
+    spec:
+      containers:
+        - name: jenkins
+          image: jenkins/jenkins:lts
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 30080
+              name: web
+              protocol: TCP
+            - containerPort: 30081
+              name: agent
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1024Mi
+          livenessProbe:
+            httpGet:
+              path: /login
+              port: 30080
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+            failureThreshold: 12
+          readinessProbe:
+            httpGet:
+              path: /login
+              port: 30080
+            initialDelaySeconds: 60
+            timeoutSeconds: 5
+            failureThreshold: 12
+          volumeMounts:
+            - name: jenkins-home
+              mountPath: /var/lib/jenkins
+          env:
+            - name: JENKINS_HOME
+              value: /var/lib/jenkins
+            - name: JENKINS_OPTS 
+              value: --httpPort=30080
+            - name: JENKINS_SLAVE_AGENT_PORT
+              value: &#34;30081&#34;
+      volumes:
+        - name: jenkins-home
+          hostPath: 
+            path: /data/devops/jenkins
+            type: Directory
+      serviceAccountName: jenkins
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="创建一个service使用nodeport方式暴露端口">创建一个service,使用nodePort方式暴露端口</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cat service.yaml 
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: jenkins
+  name: jenkins
+  namespace: devops
+spec:
+  type: NodePort
+  ports:
+    - name: web
+      port: 30080
+      targetPort: 30080
+      nodePort: 30080
+    - name: slave
+      port: 30081
+      targetPort: 30081
+      nodePort: 30081
+  selector:
+    k8s-app: jenkins
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="创建rbac授权">创建RBAC,授权</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cat rbac.yaml 
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-app: jenkins
+  name: jenkins
+  namespace: devops
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+ name: jenkins
+ namespace: devops
+rules:
+ - apiGroups: [&#34;&#34;]
+   resources: [&#34;pods&#34;,&#34;configmaps&#34;,&#34;namespaces&#34;]
+   verbs: [&#34;create&#34;,&#34;delete&#34;,&#34;get&#34;,&#34;list&#34;,&#34;patch&#34;,&#34;update&#34;,&#34;watch&#34;]
+ - apiGroups: [&#34;&#34;]
+   resources: [&#34;pods/exec&#34;]
+   verbs: [&#34;create&#34;,&#34;delete&#34;,&#34;get&#34;,&#34;list&#34;,&#34;patch&#34;,&#34;update&#34;,&#34;watch&#34;]
+ - apiGroups: [&#34;&#34;]
+   resources: [&#34;pods/log&#34;]
+   verbs: [&#34;get&#34;,&#34;list&#34;,&#34;watch&#34;]
+ - apiGroups: [&#34;&#34;]
+   resources: [&#34;secrets&#34;]
+   verbs: [&#34;get&#34;]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+ name: jenkins
+ namespace: devops
+roleRef:
+ apiGroup: rbac.authorization.k8s.io
+ kind: Role
+ name: jenkins
+subjects:
+ - kind: ServiceAccount
+   name: jenkins
+   namespace: devops
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="创建namespace名称空间并且做关键的授权否则会失败">创建namespace,名称空间,并且做关键的授权,否则会失败</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cat devops-ns.yaml 
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: devops
+  
+chown 1000.1000 /data/devops/ -R    
+#挂载到宿主机的目录,修改权限为1000,k8s务必加此步骤,否则无法正常启动.
+由于我们这里使用的镜像内部运行的用户id=1000
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="最后执行命令创建当前目录下所有yaml清单并且解锁jenkins后完成插件安装等步骤">最后执行命令,创建当前目录下所有yaml清单,并且解锁Jenkins后,完成插件安装等步骤</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">kubectl apply -f .         #要先创建出namespace,否则就要执行2次命令
+cat /data/devops/jenkins/secrets/initialAdminPassword  #拿到jenkins密码解锁
+
+[root@kubernetes-master jenkins]# kubectl get pods -n devops
+NAME                      READY   STATUS    RESTARTS   AGE
+jenkins-6774fc995-pmg9x   1/1     Running   0          153m
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/k8s-jenkins/%e8%a7%a3%e9%94%81jenkins.png"
+        data-srcset="/img/k8s-jenkins/%e8%a7%a3%e9%94%81jenkins.png, /img/k8s-jenkins/%e8%a7%a3%e9%94%81jenkins.png 1.5x, /img/k8s-jenkins/%e8%a7%a3%e9%94%81jenkins.png 2x"
+        data-sizes="auto"
+        alt="/img/k8s-jenkins/解锁jenkins.png"
+        title="图片说明" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/k8s-jenkins/%e5%ae%89%e8%a3%85%e6%8f%92%e4%bb%b6jenkins.png"
+        data-srcset="/img/k8s-jenkins/%e5%ae%89%e8%a3%85%e6%8f%92%e4%bb%b6jenkins.png, /img/k8s-jenkins/%e5%ae%89%e8%a3%85%e6%8f%92%e4%bb%b6jenkins.png 1.5x, /img/k8s-jenkins/%e5%ae%89%e8%a3%85%e6%8f%92%e4%bb%b6jenkins.png 2x"
+        data-sizes="auto"
+        alt="/img/k8s-jenkins/安装插件jenkins.png"
+        title="图片说明" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/k8s-jenkins/%e9%bb%98%e8%ae%a4%e9%a1%b5%e9%9d%a2jenkins.png"
+        data-srcset="/img/k8s-jenkins/%e9%bb%98%e8%ae%a4%e9%a1%b5%e9%9d%a2jenkins.png, /img/k8s-jenkins/%e9%bb%98%e8%ae%a4%e9%a1%b5%e9%9d%a2jenkins.png 1.5x, /img/k8s-jenkins/%e9%bb%98%e8%ae%a4%e9%a1%b5%e9%9d%a2jenkins.png 2x"
+        data-sizes="auto"
+        alt="/img/k8s-jenkins/默认页面jenkins.png"
+        title="图片说明" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-06-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" data-title="K8s单机部署Jenkins"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" data-title="K8s单机部署Jenkins"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" data-title="K8s单机部署Jenkins"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" data-title="K8s单机部署Jenkins"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/docker_compose%E9%83%A8%E7%BD%B2nexus/" class="prev" rel="prev" title="Docker_Compose部署Nexus"><i class="fas fa-angle-left fa-fw"></i>Docker_Compose部署Nexus</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.69.2">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Curry</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":100,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

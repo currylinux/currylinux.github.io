@@ -3,7 +3,14 @@
         <title>所有文章 - Curry Linux</title>
         <link>https://example.com/posts/</link>
         <description>所有文章 | Curry Linux</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Jun 2020 21:50:22 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 12 Jun 2020 02:55:29 &#43;0800</lastBuildDate><atom:link href="https://example.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>K8s单机部署Jenkins</title>
+    <link>https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/</link>
+    <pubDate>Fri, 12 Jun 2020 02:55:29 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/</guid>
+    <description><![CDATA[No.1 kubeadm安装单机版k8s前期准备 1个节点,Centos7.7系统,在节点上添加hosts信息 1 2 cat /etc/hosts 10.8.8.8 kubernetes-master 禁用防火墙,并且禁用SELI]]></description>
+</item><item>
     <title>Docker_Compose部署Nexus</title>
     <link>https://example.com/docker_compose%E9%83%A8%E7%BD%B2nexus/</link>
     <pubDate>Thu, 04 Jun 2020 21:50:22 &#43;0800</pubDate>
