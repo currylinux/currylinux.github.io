@@ -5,30 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Kubernetes部署Dashboard并支持chrome访问 - Curry Linux</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Kubernetes部署Dashboard并支持chrome访问" />
-<meta property="og:description" content="1. Dashboard前期部署 v1.16.2版本的k8s需要安装最新的2.0&#43; 版本Dashboard 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21" />
+        <title>Docker Compose实现gogs服务部署 - Curry Linux</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Docker Compose实现gogs服务部署" />
+<meta property="og:description" content="1. Gogs简单介绍 Gogs简单介绍 1 2 3 4 5 什么是Gogs? Gogs 是一款极易搭建的自助 Git 服务。 开发目的: Gogs 的目标是打造一个最简单、最快速和最轻松" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" />
+<meta property="og:url" content="https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" />
 <meta property="og:image" content="https://example.com/logo.png"/>
-<meta property="article:published_time" content="2020-06-12T14:09:41+08:00" />
-<meta property="article:modified_time" content="2020-06-12T14:09:41+08:00" />
+<meta property="article:published_time" content="2020-06-12T16:56:50+08:00" />
+<meta property="article:modified_time" content="2020-06-12T16:56:50+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://example.com/logo.png"/>
 
-<meta name="twitter:title" content="Kubernetes部署Dashboard并支持chrome访问"/>
-<meta name="twitter:description" content="1. Dashboard前期部署 v1.16.2版本的k8s需要安装最新的2.0&#43; 版本Dashboard 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21"/>
+<meta name="twitter:title" content="Docker Compose实现gogs服务部署"/>
+<meta name="twitter:description" content="1. Gogs简单介绍 Gogs简单介绍 1 2 3 4 5 什么是Gogs? Gogs 是一款极易搭建的自助 Git 服务。 开发目的: Gogs 的目标是打造一个最简单、最快速和最轻松"/>
 <meta name="application-name" content="Curry Linux">
-<meta name="apple-mobile-web-app-title" content="Curry Linux"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/curry1.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" /><link rel="prev" href="https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" /><link rel="next" href="https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="Curry Linux"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/curry1.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" /><link rel="prev" href="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Kubernetes部署Dashboard并支持chrome访问",
+        "headline": "Docker Compose实现gogs服务部署",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/example.com\/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  775 ,
-        "url": "https:\/\/example.com\/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE\/","datePublished": "2020-06-12T14:09:41+08:00","dateModified": "2020-06-12T14:09:41+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/example.com\/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  879 ,
+        "url": "https:\/\/example.com\/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2\/","datePublished": "2020-06-12T16:56:50+08:00","dateModified": "2020-06-12T16:56:50+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -45,7 +45,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" selected>简体中文</option></select>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -92,7 +92,7 @@
                 </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -106,10 +106,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Kubernetes部署Dashboard并支持chrome访问</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Docker Compose实现gogs服务部署</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Curry</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-12">2020-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 775 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" class="leancloud_visitors" data-flag-title="Kubernetes部署Dashboard并支持chrome访问">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-12">2020-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 879 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" class="leancloud_visitors" data-flag-title="Docker Compose实现gogs服务部署">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -123,92 +123,45 @@
       <ul>
         <li>
           <ul>
-            <li><a href="#1--dashboard前期部署">1.  Dashboard前期部署</a>
+            <li><a href="#1--gogs简单介绍">1.  Gogs简单介绍</a>
               <ul>
                 <li>
                   <ul>
-                    <li><a href="#v1162版本的k8s需要安装最新的20-版本dashboard">v1.16.2版本的k8s需要安装最新的2.0+ 版本Dashboard</a></li>
-                    <li><a href="#直接创建新版的dashboard默认安装在kubernetes-dashboard命名空间">直接创建,新版的Dashboard默认安装在kubernetes-dashboard命名空间</a></li>
+                    <li><a href="#gogs简单介绍">Gogs简单介绍</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
-            <li><a href="#2--dashboard修改并支持chrome浏览器访问">2.  Dashboard修改并支持chrome浏览器访问</a>
+            <li><a href="#2--gogs的docker环境及部署流程">2.  Gogs的docker环境及部署流程</a>
               <ul>
                 <li>
                   <ul>
-                    <li><a href="#要使用https方式chrome正常是不生效下面修改使其支持chrome">要使用https方式,Chrome正常是不生效,下面修改,使其支持Chrome</a></li>
+                    <li><a href="#docker和compose的安装此处就省略基于以上环境的基础上直接部署">docker和compose的安装此处就省略,基于以上环境的基础上,直接部署</a></li>
+                    <li><a href="#上面用到的环境变量需放在文件名为env的文件并保证与docker-composeyaml文件在同一目录下内容如下">上面用到的环境变量需放在文件名为.env的文件,并保证与docker-compose.yaml文件在同一目录下,内容如下:</a></li>
+                    <li><a href="#执行命令启动并且验证是否启动成功">执行命令启动,并且验证是否启动成功</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
-            <li><a href="#3--创建全局所有权用户">3.  创建全局所有权用户</a>
+            <li><a href="#2--http运行gogs">2.  HTTP运行Gogs</a>
               <ul>
                 <li>
                   <ul>
-                    <li><a href="#创建一个具有全局所有权限的用户来登录dashboard-adminyaml">创建一个具有全局所有权限的用户来登录Dashboard: (admin.yaml)</a></li>
-                    <li><a href="#执行创建操作用base64解码后的字符串作为-token-登录dashboard新版本新增了暗黑模式">执行创建操作,用base64解码后的字符串作为 token 登录Dashboard,新版本新增了暗黑模式</a></li>
+                    <li><a href="#第一次在浏览器运行gogs会需要填写一些初始化数据库配置等参数-如下图">第一次在浏览器运行Gogs会需要填写一些初始化数据库配置等参数. 如下图:</a></li>
+                    <li><a href="#yum安装nginx并且配置实现反代">yum安装nginx并且配置实现反代</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
+            <li><a href="#3--部署过程参考文档">3.  部署过程参考文档</a></li>
           </ul>
         </li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h4 id="1--dashboard前期部署">1.  Dashboard前期部署</h4>
-<h6 id="v1162版本的k8s需要安装最新的20-版本dashboard">v1.16.2版本的k8s需要安装最新的2.0+ 版本Dashboard</h6>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">pwd
-/data/k8s-yaml/dashboard
-wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta5/aio/deploy/recommended.yaml
-修改Service为NodePort类型,并且固定端口.
-vim recommended.yaml
-......
-apiVersion: v1
-metadata:
-  labels:
-    k8s-app: kubernetes-dashboard
-  name: kubernetes-dashboard
-  namespace: kubernetes-dashboard
-spec:
-  ports:
-    - port: 443
-      targetPort: 8443
-      nodePort: 31666  #固定端口为31666,外部访问的.
-  selector:
-    k8s-app: kubernetes-dashboard
-  type: NodePort   #加上type=NodePort变成NodePort类型的服务
-  ......  
-</code></pre></td></tr></table>
-</div>
-</div><h6 id="直接创建新版的dashboard默认安装在kubernetes-dashboard命名空间">直接创建,新版的Dashboard默认安装在kubernetes-dashboard命名空间</h6>
+            </div><div class="content" id="content"><h4 id="1--gogs简单介绍">1.  Gogs简单介绍</h4>
+<h6 id="gogs简单介绍">Gogs简单介绍</h6>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -216,23 +169,25 @@ spec:
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">kubectl apply -f recommended.yaml
-kubectl get pods -n kubernetes-dashboard -l k8s-app=kubernetes-dashboard
-NAME                                    READY   STATUS    RESTARTS   AGE
-kubernetes-dashboard-6b86b44f87-xhktr   1/1     Running   0          9h
-get svc -n kubernetes-dashboard
-NAME                        TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)         AGE
-dashboard-metrics-scraper   ClusterIP   10.96.150.213   &lt;none&gt;        8000/TCP        9h
-kubernetes-dashboard        NodePort    10.103.188.75   &lt;none&gt;        443:31666/TCP   9h
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">什么是Gogs?
+Gogs 是一款极易搭建的自助 Git 服务。
+开发目的:
+Gogs 的目标是打造一个最简单、最快速和最轻松的方式搭建自助Git服务.使用Go语言开发使得Gogs能够通过独立的二进制分发,
+并且支持Go语言支持的所有平台,包括 Linux、Mac OS X、Windows以及ARM平台
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="2--dashboard修改并支持chrome浏览器访问">2.  Dashboard修改并支持chrome浏览器访问</h4>
-<h6 id="要使用https方式chrome正常是不生效下面修改使其支持chrome">要使用https方式,Chrome正常是不生效,下面修改,使其支持Chrome</h6>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/gogs/%e5%9f%ba%e6%9c%ac%e4%bb%8b%e7%bb%8d-gogs.png"
+        data-srcset="/img/gogs/%e5%9f%ba%e6%9c%ac%e4%bb%8b%e7%bb%8d-gogs.png, /img/gogs/%e5%9f%ba%e6%9c%ac%e4%bb%8b%e7%bb%8d-gogs.png 1.5x, /img/gogs/%e5%9f%ba%e6%9c%ac%e4%bb%8b%e7%bb%8d-gogs.png 2x"
+        data-sizes="auto"
+        alt="/img/gogs/基本介绍-gogs.png"
+        title="图片说明" /></p>
+<h4 id="2--gogs的docker环境及部署流程">2.  Gogs的docker环境及部署流程</h4>
+<h6 id="docker和compose的安装此处就省略基于以上环境的基础上直接部署">docker和compose的安装此处就省略,基于以上环境的基础上,直接部署</h6>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -262,47 +217,158 @@ kubernetes-dashboard        NodePort    10.103.188.75   &lt;none&gt;        443:
 </span><span class="lnt">25
 </span><span class="lnt">26
 </span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-fallback" data-lang="fallback">pwd
-/data/k8s-yaml/dashboard
-mkdir key &amp;&amp; cd key
-#生成证书
-openssl genrsa -out dashboard.key 2048 
-openssl req -new -out dashboard.csr -key dashboard.key -subj &#39;/CN=10.8.8.8&#39;
-openssl x509 -req -in dashboard.csr -signkey dashboard.key -out dashboard.crt 
-#删除原有的证书secret,提供新老两种命名空间操作.
-kubectl delete secret kubernetes-dashboard-certs -n kube-system
-kubectl delete secret kubernetes-dashboard-certs -n kubernetes-dashboard
-#创建新的证书secret
-kubectl create secret generic kubernetes-dashboard-certs --from-file=dashboard.key --from-file=dashboard.crt -n kube-system
-#创建新的证书secret
-kubectl create secret generic kubernetes-dashboard-certs --from-file=dashboard.key --from-file=dashboard.crt -n kubernetes-dashboard
-#查看pod
-kubectl get pod -n kube-system
-kubectl get pod -n kubernetes-dashboard
-#重启pod,记得要重启两个pod.
-kubectl delete pod &lt;pod name&gt; -n kube-system
-kubectl delete pod &lt;pod name&gt; -n kubernetes-dashboard
-kubectl delete pod dashboard-metrics-scraper-xxx -n xx
-kubectl delete pod kubernetes-dashboard-xxx -n xxx
-#最后验证重启成功
-[root@kubernetes-master dashboard]# kubectl get pods -n kubernetes-dashboard
-NAME                                         READY   STATUS    RESTARTS   AGE
-dashboard-metrics-scraper-76585494d8-wlnrm   1/1     Running   0          9h
-kubernetes-dashboard-6b86b44f87-xhktr        1/1     Running   0          9h
+/root/gogs-project
+
+配置docker-compose
+cat docker-compose.yaml 
+version: &#39;2.3&#39;
+services:
+
+  mysql-gogs:
+    container_name: mysql-gogs
+    image: mysql:5.7
+    restart: always
+    volumes:
+        - /data/mysql:/var/lib/mysql
+        - /data/conf:/etc/mysql/conf.d
+    environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+        - &#34;${MYSQL_PORT}:3306&#34;
+    networks:
+        - gogs
+  gogs:
+    container_name: gogs
+    image: gogs/gogs:0.11.91
+    restart: always
+    depends_on:
+        - mysql-gogs
+    ports:
+        - &#34;${SSH_PORT}:22&#34;
+        - &#34;${GOGS_PORT}:3000&#34;
+    volumes:
+        - /data/gogs-data:/data
+    links:
+       - mysql-gogs
+    environment:
+        - &#34;RUN_CROUD=true&#34;
+        - SSH_PORT=${SSH_PORT}
+    networks:
+        - gogs
+
+networks:
+    gogs:
+      driver: bridge
+
+volumes:
+    gogs-data:
+      driver: local
+    mysql-data:
+      driver: local
 </code></pre></td></tr></table>
 </div>
-</div><p><img
+</div><h6 id="上面用到的环境变量需放在文件名为env的文件并保证与docker-composeyaml文件在同一目录下内容如下">上面用到的环境变量需放在文件名为.env的文件,并保证与docker-compose.yaml文件在同一目录下,内容如下:</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cat .env
+MYSQL_ROOT_PASSWORD=mysql_root_password
+MYSQL_DATABASE=gogs
+MYSQL_USER=gogs
+MYSQL_PASSWORD=gogs_password
+
+
+GOGS_PORT=3000
+SSH_PORT=10022
+MYSQL_PORT=3306
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="执行命令启动并且验证是否启动成功">执行命令启动,并且验证是否启动成功</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">docker-compose up -d
+docker ps -a 
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                           NAMES
+bc08f4a4a4cc        gogs/gogs:0.11.91   &#34;/app/gogs/docker/st…&#34;   12 days ago         Up 12 days          0.0.0.0:3000-&gt;3000/tcp, 0.0.0.0:10022-&gt;22/tcp   gogs
+b8ed2f175889        mysql:5.7           &#34;docker-entrypoint.s…&#34;   2 weeks ago         Up 12 days          0.0.0.0:3306-&gt;3306/tcp, 33060/tcp               mysql-gogs
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="2--http运行gogs">2.  HTTP运行Gogs</h4>
+<h6 id="第一次在浏览器运行gogs会需要填写一些初始化数据库配置等参数-如下图">第一次在浏览器运行Gogs会需要填写一些初始化数据库配置等参数. 如下图:</h6>
+<p><img
         class="lazyload"
         src="/svg/loading.min.svg"
-        data-src="/img/k8s-dashboard/%e5%88%9d%e6%ac%a1%e7%99%bb%e5%bd%95-dashboard.png"
-        data-srcset="/img/k8s-dashboard/%e5%88%9d%e6%ac%a1%e7%99%bb%e5%bd%95-dashboard.png, /img/k8s-dashboard/%e5%88%9d%e6%ac%a1%e7%99%bb%e5%bd%95-dashboard.png 1.5x, /img/k8s-dashboard/%e5%88%9d%e6%ac%a1%e7%99%bb%e5%bd%95-dashboard.png 2x"
+        data-src="/img/gogs/%e6%95%b0%e6%8d%ae%e5%ba%93%e8%ae%be%e7%bd%ae-gogs.png"
+        data-srcset="/img/gogs/%e6%95%b0%e6%8d%ae%e5%ba%93%e8%ae%be%e7%bd%ae-gogs.png, /img/gogs/%e6%95%b0%e6%8d%ae%e5%ba%93%e8%ae%be%e7%bd%ae-gogs.png 1.5x, /img/gogs/%e6%95%b0%e6%8d%ae%e5%ba%93%e8%ae%be%e7%bd%ae-gogs.png 2x"
         data-sizes="auto"
-        alt="/img/k8s-dashboard/初次登录-dashboard.png"
+        alt="/img/gogs/数据库设置-gogs.png"
+        title="图片说明" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/gogs/%e5%ba%94%e7%94%a8%e8%ae%be%e7%bd%ae-gogs.png"
+        data-srcset="/img/gogs/%e5%ba%94%e7%94%a8%e8%ae%be%e7%bd%ae-gogs.png, /img/gogs/%e5%ba%94%e7%94%a8%e8%ae%be%e7%bd%ae-gogs.png 1.5x, /img/gogs/%e5%ba%94%e7%94%a8%e8%ae%be%e7%bd%ae-gogs.png 2x"
+        data-sizes="auto"
+        alt="/img/gogs/应用设置-gogs.png"
+        title="图片说明" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/gogs/%e5%8f%af%e9%80%89%e8%ae%be%e7%bd%ae-gogs.png"
+        data-srcset="/img/gogs/%e5%8f%af%e9%80%89%e8%ae%be%e7%bd%ae-gogs.png, /img/gogs/%e5%8f%af%e9%80%89%e8%ae%be%e7%bd%ae-gogs.png 1.5x, /img/gogs/%e5%8f%af%e9%80%89%e8%ae%be%e7%bd%ae-gogs.png 2x"
+        data-sizes="auto"
+        alt="/img/gogs/可选设置-gogs.png"
         title="图片说明" /></p>
-<h4 id="3--创建全局所有权用户">3.  创建全局所有权用户</h4>
-<h6 id="创建一个具有全局所有权限的用户来登录dashboard-adminyaml">创建一个具有全局所有权限的用户来登录Dashboard: (admin.yaml)</h6>
+<h6 id="yum安装nginx并且配置实现反代">yum安装nginx并且配置实现反代</h6>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -330,67 +396,105 @@ kubernetes-dashboard-6b86b44f87-xhktr        1/1     Running   0          9h
 </span><span class="lnt">23
 </span><span class="lnt">24
 </span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">pwd
-/data/k8s-yaml/dashboard
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">两套配置自己根据需求做调整,也可以自定义
+#server {
+#    listen      80; ## listen for ipv4
+#    server_name   gogs.domain.com;
+#    return      301 https://$server_name$request_uri;
+#}
+server {
+    charset utf-8;
+    client_max_body_size 300M;
 
-cat admin.yaml 
-kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1beta1
-metadata:
-  name: admin
-  annotations:
-    rbac.authorization.kubernetes.io/autoupdate: &#34;true&#34;
-roleRef:
-  kind: ClusterRole
-  name: cluster-admin
-  apiGroup: rbac.authorization.k8s.io
-subjects:
-- kind: ServiceAccount
-  name: admin
-  namespace: kubernetes-dashboard
+    listen 80; # 或者 443，如果你使用 HTTPS 的话
 
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: admin
-  namespace: kubernetes-dashboard
+    # SSL support
+    # ssl on;
+    # ssl_certificate      ./ssl/fullchain.cer;
+    # ssl_certificate_key  ./ssl/domain.com.key;
+
+    server_name gogs.domain.com;
+
+    location / { # 如果你希望通过子路径访问，此处修改为子路径，注意以 / 开头并以 / 结束
+        proxy_pass http://127.0.0.1:3000/;
+    }
+}
+
+
+server {
+        listen       80 default_server;
+        listen       [::]:80 default_server;
+        server_name  _;
+        root         /usr/share/nginx/html;
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location / {
+           proxy_pass http://127.0.0.1:3000/;
+        }
+
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+    }
 </code></pre></td></tr></table>
 </div>
-</div><h6 id="执行创建操作用base64解码后的字符串作为-token-登录dashboard新版本新增了暗黑模式">执行创建操作,用base64解码后的字符串作为 token 登录Dashboard,新版本新增了暗黑模式</h6>
+</div><h4 id="3--部署过程参考文档">3.  部署过程参考文档</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">kubectl apply -f admin.yaml
-kubectl get secret -n kubernetes-dashboard|grep admin-token
-admin-token-p28x5                  kubernetes.io/service-account-token   3      10h
-kubectl get secret admin-token-p28x5 -o jsonpath={.data.token} -n kubernetes-dashboard |base64 -d  #会生成一串很长的base64后的字符串
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">参考文档如下,向各位大佬学习
+https://curder.gitbooks.io/blog/others/user-docker-deploy-gogs.html?q=
+https://github.com/Unknwon/wuwen.org/issues/12
+https://blog.csdn.net/lcr_happy/article/details/103193958
+https://clonote.com/archives/1552356953819
+https://my.oschina.net/xsh1208/blog/3019458
+
+#官方及其它使用文档如下:
+https://gogs.io/docs/installation/install_from_binary
+https://www.cnblogs.com/Sungeek/p/9203038.html
 </code></pre></td></tr></table>
 </div>
-</div><p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/img/k8s-dashboard/token%e7%99%bb%e5%bd%95-dashboard.png"
-        data-srcset="/img/k8s-dashboard/token%e7%99%bb%e5%bd%95-dashboard.png, /img/k8s-dashboard/token%e7%99%bb%e5%bd%95-dashboard.png 1.5x, /img/k8s-dashboard/token%e7%99%bb%e5%bd%95-dashboard.png 2x"
-        data-sizes="auto"
-        alt="/img/k8s-dashboard/token登录-dashboard.png"
-        title="图片说明" />
-<img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="/img/k8s-dashboard/%e7%99%bb%e5%bd%95%e5%90%8e-dashboard.png"
-        data-srcset="/img/k8s-dashboard/%e7%99%bb%e5%bd%95%e5%90%8e-dashboard.png, /img/k8s-dashboard/%e7%99%bb%e5%bd%95%e5%90%8e-dashboard.png 1.5x, /img/k8s-dashboard/%e7%99%bb%e5%bd%95%e5%90%8e-dashboard.png 2x"
-        data-sizes="auto"
-        alt="/img/k8s-dashboard/登录后-dashboard.png"
-        title="图片说明" /></p>
-</div><div class="post-footer" id="post-footer">
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -400,10 +504,10 @@ kubectl get secret admin-token-p28x5 -o jsonpath={.data.token} -n kubernetes-das
         </div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
-                            <a class="link-to-markdown" href="/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/index.md" target="_blank">阅读原始文档</a>
+                            <a class="link-to-markdown" href="/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard并支持chrome访问"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard并支持chrome访问"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard并支持chrome访问"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard并支持chrome访问"><i class="fab fa-weibo fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" data-title="Docker Compose实现gogs服务部署"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" data-title="Docker Compose实现gogs服务部署"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" data-title="Docker Compose实现gogs服务部署"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" data-title="Docker Compose实现gogs服务部署"><i class="fab fa-weibo fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -415,8 +519,7 @@ kubectl get secret admin-token-p28x5 -o jsonpath={.data.token} -n kubernetes-das
         </section>
     </div>
 
-    <div class="post-nav"><a href="/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" class="prev" rel="prev" title="K8s单机部署Jenkins"><i class="fas fa-angle-left fa-fw"></i>K8s单机部署Jenkins</a>
-            <a href="/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" class="next" rel="next" title="Docker Compose实现gogs服务部署">Docker Compose实现gogs服务部署<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" class="prev" rel="prev" title="Kubernetes部署Dashboard并支持chrome访问"><i class="fas fa-angle-left fa-fw"></i>Kubernetes部署Dashboard并支持chrome访问</a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
