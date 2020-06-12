@@ -6,7 +6,7 @@
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 12 Jun 2020 16:56:50 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Docker Compose实现gogs服务部署</title>
+    <title>Docker Compose实现Gogs服务部署</title>
     <link>https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/</link>
     <pubDate>Fri, 12 Jun 2020 16:56:50 &#43;0800</pubDate>
     <author>作者</author>
@@ -27,18 +27,18 @@
     <guid>https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/</guid>
     <description><![CDATA[No.1 kubeadm安装单机版k8s前期准备 1个节点,Centos7.7系统,在节点上添加hosts信息 1 2 cat /etc/hosts 10.8.8.8 kubernetes-master 禁用防火墙,并且禁用SELI]]></description>
 </item><item>
-    <title>Docker_Compose部署Nexus</title>
-    <link>https://example.com/docker_compose%E9%83%A8%E7%BD%B2nexus/</link>
+    <title>Docker Compose部署Nexus</title>
+    <link>https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/</link>
     <pubDate>Thu, 04 Jun 2020 21:50:22 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/docker_compose%E9%83%A8%E7%BD%B2nexus/</guid>
+    <guid>https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/</guid>
     <description><![CDATA[No.1 Nexus 基本概念之组件 1 2 3 4 简单说明下Nexus,理解为私服仓库:本地maven私服加快构建速度 代理仓库:将公网等第三方提供的仓库代理到本地.]]></description>
 </item><item>
-    <title>Docker和它兄弟Dockerer_Compose</title>
-    <link>https://example.com/docker%E5%92%8C%E5%AE%83%E5%85%84%E5%BC%9Fdockerer_compose/</link>
+    <title>Docker和Docker Compose安装</title>
+    <link>https://example.com/docker%E5%92%8Cdocker-compose%E5%AE%89%E8%A3%85/</link>
     <pubDate>Thu, 04 Jun 2020 17:27:51 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/docker%E5%92%8C%E5%AE%83%E5%85%84%E5%BC%9Fdockerer_compose/</guid>
+    <guid>https://example.com/docker%E5%92%8Cdocker-compose%E5%AE%89%E8%A3%85/</guid>
     <description><![CDATA[No.1 脚本化部署安装docker 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 [root@xxx ~]# cat docker.sh #!/bin/bash DOCKER_VERSION=docker-ce-18.09.9 DOCKER_CLIENT=docker-ce-cli-18.09.9 # remove]]></description>
 </item><item>
     <title>Hugo你的专属Blog</title>

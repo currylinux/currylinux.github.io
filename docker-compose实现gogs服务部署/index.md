@@ -1,4 +1,4 @@
-# Docker Compose实现gogs服务部署
+# Docker Compose实现Gogs服务部署
 
 
 #### 1.  Gogs简单介绍
