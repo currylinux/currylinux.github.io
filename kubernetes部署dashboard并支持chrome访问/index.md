@@ -1,4 +1,4 @@
-# Kubernetes部署Dashboard并支持chrome访问
+# Kubernetes部署Dashboard--并支持Chrome浏览器
 
 
 #### 1.  Dashboard前期部署

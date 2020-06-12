@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Kubernetes部署Dashboard并支持chrome访问 - Curry Linux</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Kubernetes部署Dashboard并支持chrome访问" />
+        <title>Kubernetes部署Dashboard--并支持Chrome浏览器 - Curry Linux</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Kubernetes部署Dashboard--并支持Chrome浏览器" />
 <meta property="og:description" content="1. Dashboard前期部署 v1.16.2版本的k8s需要安装最新的2.0&#43; 版本Dashboard 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" />
@@ -15,14 +15,14 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://example.com/logo.png"/>
 
-<meta name="twitter:title" content="Kubernetes部署Dashboard并支持chrome访问"/>
+<meta name="twitter:title" content="Kubernetes部署Dashboard--并支持Chrome浏览器"/>
 <meta name="twitter:description" content="1. Dashboard前期部署 v1.16.2版本的k8s需要安装最新的2.0&#43; 版本Dashboard 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21"/>
 <meta name="application-name" content="Curry Linux">
 <meta name="apple-mobile-web-app-title" content="Curry Linux"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/curry1.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" /><link rel="prev" href="https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" /><link rel="next" href="https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Kubernetes部署Dashboard并支持chrome访问",
+        "headline": "Kubernetes部署Dashboard--并支持Chrome浏览器",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -106,10 +106,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Kubernetes部署Dashboard并支持chrome访问</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Kubernetes部署Dashboard--并支持Chrome浏览器</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Curry</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-12">2020-06-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 775 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" class="leancloud_visitors" data-flag-title="Kubernetes部署Dashboard并支持chrome访问">
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" class="leancloud_visitors" data-flag-title="Kubernetes部署Dashboard--并支持Chrome浏览器">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -403,7 +403,7 @@ kubectl get secret admin-token-p28x5 -o jsonpath={.data.token} -n kubernetes-das
                             <a class="link-to-markdown" href="/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard并支持chrome访问"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard并支持chrome访问"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard并支持chrome访问"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard并支持chrome访问"><i class="fab fa-weibo fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard--并支持Chrome浏览器"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard--并支持Chrome浏览器"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard--并支持Chrome浏览器"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/" data-title="Kubernetes部署Dashboard--并支持Chrome浏览器"><i class="fab fa-weibo fa-fw"></i></a></span>
             </div>
         </div>
     </div>

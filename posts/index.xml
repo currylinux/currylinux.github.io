@@ -11,7 +11,7 @@
     <guid>https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/</guid>
     <description><![CDATA[1. Gogs简单介绍 Gogs简单介绍 1 2 3 4 5 什么是Gogs? Gogs 是一款极易搭建的自助 Git 服务。 开发目的: Gogs 的目标是打造一个最简单、最快速和最轻松]]></description>
 </item><item>
-    <title>Kubernetes部署Dashboard并支持chrome访问</title>
+    <title>Kubernetes部署Dashboard--并支持Chrome浏览器</title>
     <link>https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/</link>
     <pubDate>Fri, 12 Jun 2020 14:09:41 &#43;0800</pubDate>
     <author>作者</author>
