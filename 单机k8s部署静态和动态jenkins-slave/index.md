@@ -178,6 +178,24 @@ jenkins-68ccff445c-dk24f                       1/1     Running             0    
 
 ###### 到这里为止,就完成了使用Kubernetes动态生成Jenkins Slave的过程.
 
+#### 4. 补充内容
+###### 最后补充下自己部署过程遇到的Jenkins构建job的时间不正确,并且解决的办法---解决:打开jenkins的【系统管理】---> 【脚本命令行】,在命令框中输入一下命令【时间时区设为亚洲上海】:
+```
+System.setProperty('org.apache.commons.jelly.tags.fmt.timeZone', 'Asia/Shanghai')
+```
+###### 点击【运行】,可以看到时间已正常,如图
+![图片说明](/img/jenkins-slave-static-dynamic/kubernetes-时区修改-jenkins-dynamic.png)
+![图片说明](/img/jenkins-slave-static-dynamic/kubernetes-时区修改2-jenkins-dynamic.png)
+
+#### 5. 参考资料
+```
+https://www.qikqiak.com/k8s-book/
+https://www.k8stech.net/jenkins-docs/pipelineintegrated/chapter07/
+https://blog.csdn.net/qq_40168110/article/details/90755684
+```
+
+
+
 
 
 
