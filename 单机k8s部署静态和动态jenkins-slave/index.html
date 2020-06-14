@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>单机K8s部署静态和动态Jenkins Slave - Curry Linux</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="单机K8s部署静态和动态Jenkins Slave" />
+<meta property="og:description" content="1. 部署静态Jenkins Slave 静态slave是在k8s中创建一个固定pod运行,首先需要登录Jenkins,并创建agent,获取secret信" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/" />
+<meta property="og:image" content="https://example.com/logo.png"/>
+<meta property="article:published_time" content="2020-06-15T01:01:03+08:00" />
+<meta property="article:modified_time" content="2020-06-15T01:01:03+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://example.com/logo.png"/>
+
+<meta name="twitter:title" content="单机K8s部署静态和动态Jenkins Slave"/>
+<meta name="twitter:description" content="1. 部署静态Jenkins Slave 静态slave是在k8s中创建一个固定pod运行,首先需要登录Jenkins,并创建agent,获取secret信"/>
+<meta name="application-name" content="Curry Linux">
+<meta name="apple-mobile-web-app-title" content="Curry Linux"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/curry1.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/" /><link rel="prev" href="https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "单机K8s部署静态和动态Jenkins Slave",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/example.com\/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave\/"
+        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","wordcount":  2382 ,
+        "url": "https:\/\/example.com\/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave\/","datePublished": "2020-06-15T01:01:03+08:00","dateModified": "2020-06-15T01:01:03+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Curry"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('dark' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'dark' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Curry Linux">Curry Linux</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Curry Linux">Curry Linux</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">单机K8s部署静态和动态Jenkins Slave</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Curry</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-15">2020-06-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2382 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/" class="leancloud_visitors" data-flag-title="单机K8s部署静态和动态Jenkins Slave">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1--部署静态jenkins-slave">1.  部署静态Jenkins Slave</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#静态slave是在k8s中创建一个固定pod运行首先需要登录jenkins并创建agent获取secret信息">静态slave是在k8s中创建一个固定pod运行,首先需要登录Jenkins,并创建agent,获取secret信息.</a></li>
+                    <li><a href="#deployment方式创建slave挂载了docker和kubectl方便在pod中构建镜像和使用kubectl命令挂载本地的一个目录用于workspace定义了环境变量jenkins_urljenkins_secretjenkins_agent_namejenkins_agent_workdir并且根据需求挂载时区和密钥配置">Deployment方式创建slave,挂载了Docker和kubectl方便在pod中构建镜像和使用kubectl命令,挂载本地的一个目录用于workspace.定义了环境变量JENKINS_URL,JENKINS_SECRET,JENKINS_AGENT_NAME,JENKINS_AGENT_WORKDIR.并且根据需求挂载时区和密钥配置.</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#2--部署动态jenkins-slave">2.  部署动态Jenkins Slave</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#动态jenkins-slave安装kubernetes插件安装完成后最好重启一下配置插件信息-系统设置---最后面-cloud--增加一个云">动态Jenkins Slave,安装kubernetes插件（安装完成后最好重启一下）。配置插件信息 系统设置 -&gt; 最后面 Cloud -&gt;增加一个云.</a></li>
+                    <li><a href="#安装完毕后点击-manage-jenkins--configure-system--拖到最下方如果有-add-a-new-cloud--选择-kubernetes然后填写-kubernetes和jenkins配置信息即可但是最新版本的kubernetes插件将配置单独放置到了一个页面中">安装完毕后,点击 Manage Jenkins —&gt; Configure System —&gt; (拖到最下方),如果有 Add a new cloud —&gt; 选择 Kubernetes,然后填写 Kubernetes和Jenkins配置信息即可,但是最新版本的Kubernetes插件将配置单独放置到了一个页面中</a></li>
+                    <li><a href="#此时需要点击-a-separate-configuration-page这个链接跳转到-configure-cloud-页面">此时需要点击 a separate configuration page这个链接,跳转到 Configure Cloud 页面</a></li>
+                    <li><a href="#在该页面我们可以点击-add-a-new-cloud---选择-kubernetes然后填写-kubernetes-和-jenkins-配置信息">在该页面我们可以点击 Add a new cloud -&gt; 选择 Kubernetes，然后填写 Kubernetes 和 Jenkins 配置信息:</a></li>
+                    <li><a href="#注意namespace这里填devops然后点击test-connection如果出现connection-test-successful的提示信息证明jenkins已经可以和kubernetes系统正常通信了然后下方的-jenkins-url地址-httpjenkinsdevopssvcclusterlocal30080这里的格式为服务名namespacesvcclusterlocal30080-根据上面创建的jenkins的服务名填写通道地址jenkinsdevopssvcclusterlocal30081是jenkins-slave使用的端口">注意namespace,这里填devops,然后点击Test Connection,如果出现Connection test successful的提示信息证明Jenkins已经可以和Kubernetes系统正常通信了,然后下方的 Jenkins URL地址: <a href="http://jenkins.devops.svc.cluster.local">http://jenkins.devops.svc.cluster.local</a>:30080,这里的格式为:服务名.namespace.svc.cluster.local:30080, 根据上面创建的jenkins的服务名填写.通道地址jenkins.devops.svc.cluster.local:30081是Jenkins Slave使用的端口.</a></li>
+                    <li><a href="#配置pod-template其实就是配置jenkins-slave运行的pod模板命名空间我们同样使用devopslabels这里也非常重要对于后面执行job的时候需要用到该值然后我们这里使用的是cnychjenkinsjnlp6这个镜像这个镜像是在官方的jnlp镜像基础上定制的有dockerkubectl等一些实用的工具">配置Pod Template,其实就是配置Jenkins Slave运行的Pod模板,命名空间我们同样使用devops,Labels这里也非常重要,对于后面执行Job的时候需要用到该值,然后我们这里使用的是cnych/jenkins:jnlp6这个镜像,这个镜像是在官方的jnlp镜像基础上定制的,有docker、kubectl等一些实用的工具</a></li>
+                    <li><a href="#注意--容器的名称必须是jnlp这是默认拉起的容器另外需要将command-to-run和arguments-to-pass-to-the-command的值都删除掉否则会失败">⚠注意⚠  容器的名称必须是jnlp,这是默认拉起的容器,另外需要将Command to run和Arguments to pass to the command的值都删除掉,否则会失败.</a></li>
+                    <li><a href="#然后我们这里需要在下面挂载几个主机目录一个是-varrundockersock该文件是用于pod中的容器能够共享宿主机的docker这就是大家说的docker-in-docker的方式docker二进制文件已经打包到上面的镜像中了另外一个目录下rootkube目录我们将这个目录挂载到容器的rootkube目录下面这是为了让我们能够在pod的容器中能够使用-kubectl工具来访问我们的kubernetes服务方便我们后面在slave-pod部署kubernetes应用另外根据自己实际情况需求也可以挂载时区hosts等主机目录权限最好更改为1000">然后我们这里需要在下面挂载几个主机目录,一个是 /var/run/docker.sock,该文件是用于Pod中的容器能够共享宿主机的Docker,这就是大家说的docker in docker的方式，Docker二进制文件已经打包到上面的镜像中了,另外一个目录下/root/.kube目录,我们将这个目录挂载到容器的/root/.kube目录下面这是为了让我们能够在Pod的容器中能够使用 kubectl工具来访问我们的Kubernetes服务,方便我们后面在Slave Pod部署Kubernetes应用.另外根据自己实际情况需求,也可以挂载时区,hosts等主机目录,权限最好更改为1000.</a></li>
+                    <li><a href="#另外如果在配置了后运行slave-pod的时候出现了权限问题这是因为jenkins-slave-pod中没有配置权限所以需要配置上serviceaccount在slave-pod配置的地方点击下面的高级添加上对应的serviceaccount即可以及顺便指定下工作卷所在的空间应该是保存job的构建数据的">另外如果在配置了后运行Slave Pod的时候出现了权限问题,这是因为Jenkins Slave Pod中没有配置权限,所以需要配置上ServiceAccount,在Slave Pod配置的地方点击下面的高级,添加上对应的ServiceAccount即可,以及顺便指定下工作卷所在的空间,应该是保存job的构建数据的.</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#3--动态jenkins-slave测试">3.  动态Jenkins Slave测试</a>
+              <ul>
+                <li>
+                  <ul>
+                    <li><a href="#kubernetes插件的配置工作完成了接下来我们就来添加一个job任务看是否能够在-slave-pod中执行任务执行完成后看pod是否会被销毁">Kubernetes插件的配置工作完成了,接下来我们就来添加一个Job任务,看是否能够在 Slave Pod中执行,任务执行完成后看Pod是否会被销毁</a></li>
+                    <li><a href="#在jenkins首页点击create-new-jobs创建一个测试的任务输入任务名称然后我们选择freestyle-project类型的任务注意在下面的label-expression这里要填入ydzs-jnlp就是前面我们配置的slave-pod中的label这两个地方必须保持一致">在Jenkins首页点击create new jobs,创建一个测试的任务,输入任务名称,然后我们选择Freestyle project类型的任务,注意在下面的Label Expression这里要填入ydzs-jnlp,就是前面我们配置的Slave Pod中的Label,这两个地方必须保持一致</a></li>
+                    <li><a href="#然后往下拉在-build区域选择execute-shell">然后往下拉,在 Build区域选择Execute shell</a></li>
+                    <li><a href="#然后输入要测试用的命令最后点保存">然后输入要测试用的命令,最后点保存.</a></li>
+                    <li><a href="#现在直接在页面点击左侧的build-now触发构建然后观察kubernetes集群中pod的变化">现在直接在页面点击左侧的Build now触发构建,然后观察Kubernetes集群中Pod的变化:</a></li>
+                    <li><a href="#此时可以看到一个新的podjnlp-1g893被创建这是我们的jenkins-slave到这里证明任务已经构建完成这个时候再去集群查看下pod列表发现kube-ops这个namespace下面已经没有之前的slave这个pod了如果有部署dashboard的话也可以通过它更方便的查看">此时可以看到一个新的Pod:jnlp-1g893被创建,这是我们的Jenkins Slave.到这里证明任务已经构建完成,这个时候再去集群查看下Pod列表,发现kube-ops这个namespace下面已经没有之前的Slave这个Pod了.如果有部署Dashboard的话,也可以通过它更方便的查看.</a></li>
+                    <li><a href="#到这里为止就完成了使用kubernetes动态生成jenkins-slave的过程">到这里为止,就完成了使用Kubernetes动态生成Jenkins Slave的过程.</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h4 id="1--部署静态jenkins-slave">1.  部署静态Jenkins Slave</h4>
+<h6 id="静态slave是在k8s中创建一个固定pod运行首先需要登录jenkins并创建agent获取secret信息">静态slave是在k8s中创建一个固定pod运行,首先需要登录Jenkins,并创建agent,获取secret信息.</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/%e6%b7%bb%e5%8a%a0%e8%8a%82%e7%82%b9-jenkins-static.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/%e6%b7%bb%e5%8a%a0%e8%8a%82%e7%82%b9-jenkins-static.png, /img/jenkins-slave-static-dynamic/%e6%b7%bb%e5%8a%a0%e8%8a%82%e7%82%b9-jenkins-static.png 1.5x, /img/jenkins-slave-static-dynamic/%e6%b7%bb%e5%8a%a0%e8%8a%82%e7%82%b9-jenkins-static.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/添加节点-jenkins-static.png"
+        title="图片说明" /></p>
+<h6 id="deployment方式创建slave挂载了docker和kubectl方便在pod中构建镜像和使用kubectl命令挂载本地的一个目录用于workspace定义了环境变量jenkins_urljenkins_secretjenkins_agent_namejenkins_agent_workdir并且根据需求挂载时区和密钥配置">Deployment方式创建slave,挂载了Docker和kubectl方便在pod中构建镜像和使用kubectl命令,挂载本地的一个目录用于workspace.定义了环境变量JENKINS_URL,JENKINS_SECRET,JENKINS_AGENT_NAME,JENKINS_AGENT_WORKDIR.并且根据需求挂载时区和密钥配置.</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">pwd
+/data/k8s-yaml/jenkins
+
+cat jenkinsslave.yaml
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    k8s-app: jenkinsagent
+  name: jenkinsagent
+  namespace: devops
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      k8s-app: jenkinsagent
+  template:
+    metadata:
+      labels:
+        k8s-app: jenkinsagent
+      namespace: devops
+      name: jenkinsagent
+    spec:
+      containers:
+        - name: jenkinsagent
+          image: cnych/jenkins:jnlp6
+          imagePullPolicy: IfNotPresent
+          tty: true
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+            requests:
+              cpu: 500m
+              memory: 1024Mi
+          volumeMounts:
+            - name: jenkinsagent-workdir
+              mountPath: /home/jenkins/workspace
+            - name: buildtools
+              mountPath: /home/jenkins/buildtools
+            - name: docker
+              mountPath: /usr/bin/docker
+            - name: docker-sock
+              mountPath: /var/run/docker.sock
+            - name: docker-config
+              mountPath: /etc/docker
+            - name: date
+              mountPath: /etc/localtime
+            - name: ssh
+              mountPath: /root/.ssh
+            - name: sshd
+              mountPath: /etc/ssh/sshd_config
+            - name: kubectlconfig
+              mountPath: /home/jenkins/.kube/config
+            - name: kubectlcmd
+              mountPath: /usr/bin/kubectl
+              
+          env:
+            - name: JENKINS_URL
+              value: http://192.168.1.200:30080
+            - name: JENKINS_SECRET
+              value: 5639cac0bf16bf15735d44bc435793417365f4dfa8fc72fb12737f3787091ae8
+            - name: JENKINS_AGENT_NAME
+              value: build01
+            - name: JENKINS_AGENT_WORKDIR
+              value: /home/jenkins/workspace
+      volumes:
+        - name: jenkinsagent-workdir
+          hostPath: 
+            path: /data/devops/jenkins/workspace
+            type: Directory
+        - name: buildtools
+          hostPath: 
+            path: /usr/local/buildtools
+            type: Directory
+        - name: docker
+          hostPath:
+            path: /usr/bin/docker
+        - name: docker-sock
+          hostPath:
+            path: /var/run/docker.sock
+        - name: docker-config
+          hostPath:
+            path: /etc/docker
+        - name: date
+          hostPath:
+            path: /etc/localtime
+        - name: ssh
+          hostPath:
+            path: /root/.ssh
+        - name: sshd
+          hostPath:
+            path: /etc/ssh/sshd_config
+        - name: kubectlconfig
+          hostPath: 
+            path: /root/.kube/config
+        - name: kubectlcmd
+          hostPath: 
+            path: /usr/bin/kubectl
+
+kubectl apply -f jenkinsslave.yaml  #创建配置清单命令
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="2--部署动态jenkins-slave">2.  部署动态Jenkins Slave</h4>
+<h6 id="动态jenkins-slave安装kubernetes插件安装完成后最好重启一下配置插件信息-系统设置---最后面-cloud--增加一个云">动态Jenkins Slave,安装kubernetes插件（安装完成后最好重启一下）。配置插件信息 系统设置 -&gt; 最后面 Cloud -&gt;增加一个云.</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes%e6%8f%92%e4%bb%b6%e5%ae%89%e8%a3%85-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes%e6%8f%92%e4%bb%b6%e5%ae%89%e8%a3%85-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes%e6%8f%92%e4%bb%b6%e5%ae%89%e8%a3%85-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes%e6%8f%92%e4%bb%b6%e5%ae%89%e8%a3%85-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes插件安装-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h6 id="安装完毕后点击-manage-jenkins--configure-system--拖到最下方如果有-add-a-new-cloud--选择-kubernetes然后填写-kubernetes和jenkins配置信息即可但是最新版本的kubernetes插件将配置单独放置到了一个页面中">安装完毕后,点击 Manage Jenkins —&gt; Configure System —&gt; (拖到最下方),如果有 Add a new cloud —&gt; 选择 Kubernetes,然后填写 Kubernetes和Jenkins配置信息即可,但是最新版本的Kubernetes插件将配置单独放置到了一个页面中</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes%e6%8f%92%e4%bb%b6%e9%85%8d%e7%bd%ae%e4%bd%8d%e7%bd%ae-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes%e6%8f%92%e4%bb%b6%e9%85%8d%e7%bd%ae%e4%bd%8d%e7%bd%ae-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes%e6%8f%92%e4%bb%b6%e9%85%8d%e7%bd%ae%e4%bd%8d%e7%bd%ae-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes%e6%8f%92%e4%bb%b6%e9%85%8d%e7%bd%ae%e4%bd%8d%e7%bd%ae-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes插件配置位置-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h6 id="此时需要点击-a-separate-configuration-page这个链接跳转到-configure-cloud-页面">此时需要点击 a separate configuration page这个链接,跳转到 Configure Cloud 页面</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes%e8%b7%b3%e8%bd%ac%e5%88%b0%e6%b7%bb%e5%8a%a0%e9%a1%b5%e9%9d%a2-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes%e8%b7%b3%e8%bd%ac%e5%88%b0%e6%b7%bb%e5%8a%a0%e9%a1%b5%e9%9d%a2-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes%e8%b7%b3%e8%bd%ac%e5%88%b0%e6%b7%bb%e5%8a%a0%e9%a1%b5%e9%9d%a2-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes%e8%b7%b3%e8%bd%ac%e5%88%b0%e6%b7%bb%e5%8a%a0%e9%a1%b5%e9%9d%a2-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes跳转到添加页面-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h6 id="在该页面我们可以点击-add-a-new-cloud---选择-kubernetes然后填写-kubernetes-和-jenkins-配置信息">在该页面我们可以点击 Add a new cloud -&gt; 选择 Kubernetes，然后填写 Kubernetes 和 Jenkins 配置信息:</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af1-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af1-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af1-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af1-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes-配置信息1-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h6 id="注意namespace这里填devops然后点击test-connection如果出现connection-test-successful的提示信息证明jenkins已经可以和kubernetes系统正常通信了然后下方的-jenkins-url地址-httpjenkinsdevopssvcclusterlocal30080这里的格式为服务名namespacesvcclusterlocal30080-根据上面创建的jenkins的服务名填写通道地址jenkinsdevopssvcclusterlocal30081是jenkins-slave使用的端口">注意namespace,这里填devops,然后点击Test Connection,如果出现Connection test successful的提示信息证明Jenkins已经可以和Kubernetes系统正常通信了,然后下方的 Jenkins URL地址: <a href="http://jenkins.devops.svc.cluster.local">http://jenkins.devops.svc.cluster.local</a>:30080,这里的格式为:服务名.namespace.svc.cluster.local:30080, 根据上面创建的jenkins的服务名填写.通道地址jenkins.devops.svc.cluster.local:30081是Jenkins Slave使用的端口.</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af2-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af2-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af2-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af2-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes-配置信息2-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h6 id="配置pod-template其实就是配置jenkins-slave运行的pod模板命名空间我们同样使用devopslabels这里也非常重要对于后面执行job的时候需要用到该值然后我们这里使用的是cnychjenkinsjnlp6这个镜像这个镜像是在官方的jnlp镜像基础上定制的有dockerkubectl等一些实用的工具">配置Pod Template,其实就是配置Jenkins Slave运行的Pod模板,命名空间我们同样使用devops,Labels这里也非常重要,对于后面执行Job的时候需要用到该值,然后我们这里使用的是cnych/jenkins:jnlp6这个镜像,这个镜像是在官方的jnlp镜像基础上定制的,有docker、kubectl等一些实用的工具</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af3-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af3-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af3-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af3-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes-配置信息3-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h6 id="注意--容器的名称必须是jnlp这是默认拉起的容器另外需要将command-to-run和arguments-to-pass-to-the-command的值都删除掉否则会失败">⚠注意⚠  容器的名称必须是jnlp,这是默认拉起的容器,另外需要将Command to run和Arguments to pass to the command的值都删除掉,否则会失败.</h6>
+<h6 id="然后我们这里需要在下面挂载几个主机目录一个是-varrundockersock该文件是用于pod中的容器能够共享宿主机的docker这就是大家说的docker-in-docker的方式docker二进制文件已经打包到上面的镜像中了另外一个目录下rootkube目录我们将这个目录挂载到容器的rootkube目录下面这是为了让我们能够在pod的容器中能够使用-kubectl工具来访问我们的kubernetes服务方便我们后面在slave-pod部署kubernetes应用另外根据自己实际情况需求也可以挂载时区hosts等主机目录权限最好更改为1000">然后我们这里需要在下面挂载几个主机目录,一个是 /var/run/docker.sock,该文件是用于Pod中的容器能够共享宿主机的Docker,这就是大家说的docker in docker的方式，Docker二进制文件已经打包到上面的镜像中了,另外一个目录下/root/.kube目录,我们将这个目录挂载到容器的/root/.kube目录下面这是为了让我们能够在Pod的容器中能够使用 kubectl工具来访问我们的Kubernetes服务,方便我们后面在Slave Pod部署Kubernetes应用.另外根据自己实际情况需求,也可以挂载时区,hosts等主机目录,权限最好更改为1000.</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af5-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af5-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af5-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af5-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes-配置信息5-jenkins-dynamic.png"
+        title="图片说明" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af6-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af6-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af6-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af6-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes-配置信息6-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h6 id="另外如果在配置了后运行slave-pod的时候出现了权限问题这是因为jenkins-slave-pod中没有配置权限所以需要配置上serviceaccount在slave-pod配置的地方点击下面的高级添加上对应的serviceaccount即可以及顺便指定下工作卷所在的空间应该是保存job的构建数据的">另外如果在配置了后运行Slave Pod的时候出现了权限问题,这是因为Jenkins Slave Pod中没有配置权限,所以需要配置上ServiceAccount,在Slave Pod配置的地方点击下面的高级,添加上对应的ServiceAccount即可,以及顺便指定下工作卷所在的空间,应该是保存job的构建数据的.</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af7-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af7-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af7-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af7-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes-配置信息7-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h4 id="3--动态jenkins-slave测试">3.  动态Jenkins Slave测试</h4>
+<h6 id="kubernetes插件的配置工作完成了接下来我们就来添加一个job任务看是否能够在-slave-pod中执行任务执行完成后看pod是否会被销毁">Kubernetes插件的配置工作完成了,接下来我们就来添加一个Job任务,看是否能够在 Slave Pod中执行,任务执行完成后看Pod是否会被销毁</h6>
+<h6 id="在jenkins首页点击create-new-jobs创建一个测试的任务输入任务名称然后我们选择freestyle-project类型的任务注意在下面的label-expression这里要填入ydzs-jnlp就是前面我们配置的slave-pod中的label这两个地方必须保持一致">在Jenkins首页点击create new jobs,创建一个测试的任务,输入任务名称,然后我们选择Freestyle project类型的任务,注意在下面的Label Expression这里要填入ydzs-jnlp,就是前面我们配置的Slave Pod中的Label,这两个地方必须保持一致</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af8-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af8-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af8-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af8-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes-配置信息8-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h6 id="然后往下拉在-build区域选择execute-shell">然后往下拉,在 Build区域选择Execute shell</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af9-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af9-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af9-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af9-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes-配置信息9-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h6 id="然后输入要测试用的命令最后点保存">然后输入要测试用的命令,最后点保存.</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">echo &#34;测试 Kubernetes 动态生成 jenkins slave&#34;
+echo &#34;==============docker in docker===========&#34;
+docker info
+
+echo &#34;=============kubectl=============&#34;
+kubectl get pods
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af10-jenkins-dynamic.png"
+        data-srcset="/img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af10-jenkins-dynamic.png, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af10-jenkins-dynamic.png 1.5x, /img/jenkins-slave-static-dynamic/kubernetes-%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af10-jenkins-dynamic.png 2x"
+        data-sizes="auto"
+        alt="/img/jenkins-slave-static-dynamic/kubernetes-配置信息10-jenkins-dynamic.png"
+        title="图片说明" /></p>
+<h6 id="现在直接在页面点击左侧的build-now触发构建然后观察kubernetes集群中pod的变化">现在直接在页面点击左侧的Build now触发构建,然后观察Kubernetes集群中Pod的变化:</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ kubectl get pods -n kube-ops                        
+NAME                                           READY   STATUS              RESTARTS   AGE
+jenkins-68ccff445c-dk24f                       1/1     Running             0          12h
+jnlp-1g893                                     0/1     ContainerCreating   0          83s
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="此时可以看到一个新的podjnlp-1g893被创建这是我们的jenkins-slave到这里证明任务已经构建完成这个时候再去集群查看下pod列表发现kube-ops这个namespace下面已经没有之前的slave这个pod了如果有部署dashboard的话也可以通过它更方便的查看">此时可以看到一个新的Pod:jnlp-1g893被创建,这是我们的Jenkins Slave.到这里证明任务已经构建完成,这个时候再去集群查看下Pod列表,发现kube-ops这个namespace下面已经没有之前的Slave这个Pod了.如果有部署Dashboard的话,也可以通过它更方便的查看.</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ kubectl get pods -n kube-ops                        
+NAME                                           READY   STATUS              RESTARTS   AGE
+jenkins-68ccff445c-dk24f                       1/1     Running             0          12h
+</code></pre></td></tr></table>
+</div>
+</div><h6 id="到这里为止就完成了使用kubernetes动态生成jenkins-slave的过程">到这里为止,就完成了使用Kubernetes动态生成Jenkins Slave的过程.</h6>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-06-15</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/" data-title="单机K8s部署静态和动态Jenkins Slave"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/" data-title="单机K8s部署静态和动态Jenkins Slave"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/" data-title="单机K8s部署静态和动态Jenkins Slave"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/" data-title="单机K8s部署静态和动态Jenkins Slave"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/" class="prev" rel="prev" title="Docker Compose实现Gogs服务部署"><i class="fas fa-angle-left fa-fw"></i>Docker Compose实现Gogs服务部署</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.69.2">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Curry</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":200},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":100,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
