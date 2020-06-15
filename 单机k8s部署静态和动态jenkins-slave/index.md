@@ -73,7 +73,7 @@ spec:
             - name: JENKINS_SECRET
               value: 5639cac0bf16bf15735d44bc435793417365f4dfa8fc72fb12737f3787091ae8
             - name: JENKINS_AGENT_NAME
-              value: build01
+              value: build02
             - name: JENKINS_AGENT_WORKDIR
               value: /home/jenkins/workspace
       volumes:
