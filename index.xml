@@ -3,9 +3,16 @@
         <title>Curry Linux</title>
         <link>https://example.com/</link>
         <description>关于 LoveIt 主题</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Jun 2020 01:01:03 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 15 Jun 2020 15:12:41 &#43;0800</lastBuildDate>
             <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Golang介绍</title>
+    <link>https://example.com/golang%E4%BB%8B%E7%BB%8D/</link>
+    <pubDate>Mon, 15 Jun 2020 15:12:41 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://example.com/golang%E4%BB%8B%E7%BB%8D/</guid>
+    <description><![CDATA[1. 初识GO语言 Go是一门开放源码的编程语言,可容易的构建简单,可靠和高效的软件 ⭐ 开发者使用编程语言的三大分类(执行速度、简易程度、开发难度)]]></description>
+</item><item>
     <title>单机K8s部署静态和动态Jenkins Slave</title>
     <link>https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/</link>
     <pubDate>Mon, 15 Jun 2020 01:01:03 &#43;0800</pubDate>

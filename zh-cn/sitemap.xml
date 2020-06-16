@@ -2,7 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://example.com/</loc><lastmod>2020-06-15T01:01:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://example.com/</loc><lastmod>2020-06-15T15:12:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://example.com/en/"
@@ -15,7 +15,8 @@
                     hreflang="zh-cn"
                     href="https://example.com/"
                     /></url><url>
-            <loc>https://example.com/posts/</loc><lastmod>2020-06-15T01:01:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://example.com/golang%E4%BB%8B%E7%BB%8D/</loc><lastmod>2020-06-15T15:12:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://example.com/posts/</loc><lastmod>2020-06-15T15:12:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/</loc><lastmod>2020-06-15T01:01:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/</loc><lastmod>2020-06-12T16:56:50&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/</loc><lastmod>2020-06-12T14:09:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
