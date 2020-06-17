@@ -174,4 +174,3 @@ def PrintMes(value,color){
 ![图片说明](/img/dynamic-jenkins-docker-application/Jenkins配置参数14-dockerapplication.png)
 ![图片说明](/img/dynamic-jenkins-docker-application/Jenkins配置参数15-dockerapplication.png)
 
-
