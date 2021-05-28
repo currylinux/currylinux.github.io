@@ -2,7 +2,33 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://example.com/fr/categories/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://example.com/fr/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://example.com/en/"
+                        /><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="https://example.com/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="fr"
+                    href="https://example.com/fr/"
+                    /></url><url>
+            <loc>https://example.com/fr/about/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://example.com/en/about/"
+                        /><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="https://example.com/about/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="fr"
+                    href="https://example.com/fr/about/"
+                    /></url><url>
+            <loc>https://example.com/fr/categories/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://example.com/en/categories/"
@@ -15,18 +41,27 @@
                     hreflang="fr"
                     href="https://example.com/fr/categories/"
                     /></url><url>
-            <loc>https://example.com/fr/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://example.com/en/"
-                        /><xhtml:link
+            <loc>https://example.com/fr/tags/content/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://example.com/"
+                        href="https://example.com/tags/content/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://example.com/fr/"
+                    href="https://example.com/fr/tags/content/"
+                    /></url><url>
+            <loc>https://example.com/fr/categories/documentation/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://example.com/en/categories/documentation/"
+                        /><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="https://example.com/categories/documentation/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="fr"
+                    href="https://example.com/fr/categories/documentation/"
                     /></url><url>
             <loc>https://example.com/fr/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
