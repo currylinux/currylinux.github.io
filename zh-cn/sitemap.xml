@@ -2,7 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://currylinux.github.io/categories/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://currylinux.github.io/categories/</loc><lastmod>2020-06-18T01:30:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://currylinux.github.io/en/categories/"
@@ -15,7 +15,7 @@
                     hreflang="zh-cn"
                     href="https://currylinux.github.io/categories/"
                     /></url><url>
-            <loc>https://currylinux.github.io/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://currylinux.github.io/</loc><lastmod>2020-06-18T01:30:07&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="https://currylinux.github.io/en/"
@@ -70,17 +70,4 @@
                     href="https://currylinux.github.io/tags/content/"
                     /></url><url>
             <loc>https://currylinux.github.io/tags/installation/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://currylinux.github.io/categories/documentation/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://currylinux.github.io/en/categories/documentation/"
-                        /><xhtml:link
-                        rel="alternate"
-                        hreflang="fr"
-                        href="https://currylinux.github.io/fr/categories/documentation/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="https://currylinux.github.io/categories/documentation/"
-                    /></url><url>
             <loc>https://currylinux.github.io/tags/configuration/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
