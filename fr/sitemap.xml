@@ -15,15 +15,6 @@
                     hreflang="fr"
                     href="https://currylinux.github.io/fr/categories/"
                     /></url><url>
-            <loc>https://currylinux.github.io/fr/tags/content/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://currylinux.github.io/tags/content/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="fr"
-                    href="https://currylinux.github.io/fr/tags/content/"
-                    /></url><url>
             <loc>https://currylinux.github.io/fr/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"

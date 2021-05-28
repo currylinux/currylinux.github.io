@@ -59,15 +59,4 @@
             <loc>https://currylinux.github.io/docker%E5%92%8Cdocker-compose%E5%AE%89%E8%A3%85/</loc><lastmod>2020-06-04T17:27:51&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://currylinux.github.io/tags/hugo/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://currylinux.github.io/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://currylinux.github.io/categories/%E6%95%99%E7%A8%8B/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://currylinux.github.io/tags/content/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="fr"
-                        href="https://currylinux.github.io/fr/tags/content/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="https://currylinux.github.io/tags/content/"
-                    /></url><url>
-            <loc>https://currylinux.github.io/tags/installation/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://currylinux.github.io/tags/configuration/</loc><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>https://currylinux.github.io/categories/%E6%95%99%E7%A8%8B/</loc><lastmod>2020-06-04T14:48:33&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
