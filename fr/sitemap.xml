@@ -2,32 +2,6 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://currylinux.github.io/fr/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://currylinux.github.io/en/"
-                        /><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://currylinux.github.io/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="fr"
-                    href="https://currylinux.github.io/fr/"
-                    /></url><url>
-            <loc>https://currylinux.github.io/fr/about/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://currylinux.github.io/en/about/"
-                        /><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="https://currylinux.github.io/about/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="fr"
-                    href="https://currylinux.github.io/fr/about/"
-                    /></url><url>
             <loc>https://currylinux.github.io/fr/categories/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
@@ -49,6 +23,19 @@
                     rel="alternate"
                     hreflang="fr"
                     href="https://currylinux.github.io/fr/tags/content/"
+                    /></url><url>
+            <loc>https://currylinux.github.io/fr/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://currylinux.github.io/en/"
+                        /><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="https://currylinux.github.io/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="fr"
+                    href="https://currylinux.github.io/fr/"
                     /></url><url>
             <loc>https://currylinux.github.io/fr/categories/documentation/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
