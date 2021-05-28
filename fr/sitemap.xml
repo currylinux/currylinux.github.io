@@ -2,77 +2,77 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://example.com/fr/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://currylinux.github.io/fr/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://example.com/en/"
+                        href="https://currylinux.github.io/en/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://example.com/"
+                        href="https://currylinux.github.io/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://example.com/fr/"
+                    href="https://currylinux.github.io/fr/"
                     /></url><url>
-            <loc>https://example.com/fr/about/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://currylinux.github.io/fr/about/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://example.com/en/about/"
+                        href="https://currylinux.github.io/en/about/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://example.com/about/"
+                        href="https://currylinux.github.io/about/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://example.com/fr/about/"
+                    href="https://currylinux.github.io/fr/about/"
                     /></url><url>
-            <loc>https://example.com/fr/categories/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://currylinux.github.io/fr/categories/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://example.com/en/categories/"
+                        href="https://currylinux.github.io/en/categories/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://example.com/categories/"
+                        href="https://currylinux.github.io/categories/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://example.com/fr/categories/"
+                    href="https://currylinux.github.io/fr/categories/"
                     /></url><url>
-            <loc>https://example.com/fr/tags/content/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://currylinux.github.io/fr/tags/content/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://example.com/tags/content/"
+                        href="https://currylinux.github.io/tags/content/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://example.com/fr/tags/content/"
+                    href="https://currylinux.github.io/fr/tags/content/"
                     /></url><url>
-            <loc>https://example.com/fr/categories/documentation/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>https://currylinux.github.io/fr/categories/documentation/</loc><lastmod>2021-05-28T15:35:04&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://example.com/en/categories/documentation/"
+                        href="https://currylinux.github.io/en/categories/documentation/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://example.com/categories/documentation/"
+                        href="https://currylinux.github.io/categories/documentation/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://example.com/fr/categories/documentation/"
+                    href="https://currylinux.github.io/fr/categories/documentation/"
                     /></url><url>
-            <loc>https://example.com/fr/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://currylinux.github.io/fr/tags/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="https://example.com/en/tags/"
+                        href="https://currylinux.github.io/en/tags/"
                         /><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="https://example.com/tags/"
+                        href="https://currylinux.github.io/tags/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="fr"
-                    href="https://example.com/fr/tags/"
+                    href="https://currylinux.github.io/fr/tags/"
                     /></url></urlset>

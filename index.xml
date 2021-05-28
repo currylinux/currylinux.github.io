@@ -1,79 +1,79 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Curry Linux</title>
-        <link>https://example.com/</link>
+        <link>https://currylinux.github.io/</link>
         <description>关于 LoveIt 主题</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 02 Aug 2019 11:04:49 &#43;0800</lastBuildDate>
-            <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+            <atom:link href="https://currylinux.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>Go语言基础语法入门(1)</title>
-    <link>https://example.com/go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A81/</link>
+    <link>https://currylinux.github.io/go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A81/</link>
     <pubDate>Thu, 18 Jun 2020 01:30:07 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A81/</guid>
+    <guid>https://currylinux.github.io/go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E5%85%A5%E9%97%A81/</guid>
     <description><![CDATA[1. 基础语法介绍(1) 首先演示操作在go语言中注释的用法,注释在编译的时候不会现实,因为都是给人看的.所以注释对编译是没有影响的,可以直接在v]]></description>
 </item><item>
     <title>K8s动态Jenkins Slave使用Pipeline发布Docker应用</title>
-    <link>https://example.com/k8s%E5%8A%A8%E6%80%81jenkins-slave%E4%BD%BF%E7%94%A8pipeline%E5%8F%91%E5%B8%83docker%E5%BA%94%E7%94%A8/</link>
+    <link>https://currylinux.github.io/k8s%E5%8A%A8%E6%80%81jenkins-slave%E4%BD%BF%E7%94%A8pipeline%E5%8F%91%E5%B8%83docker%E5%BA%94%E7%94%A8/</link>
     <pubDate>Wed, 17 Jun 2020 12:07:55 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/k8s%E5%8A%A8%E6%80%81jenkins-slave%E4%BD%BF%E7%94%A8pipeline%E5%8F%91%E5%B8%83docker%E5%BA%94%E7%94%A8/</guid>
+    <guid>https://currylinux.github.io/k8s%E5%8A%A8%E6%80%81jenkins-slave%E4%BD%BF%E7%94%A8pipeline%E5%8F%91%E5%B8%83docker%E5%BA%94%E7%94%A8/</guid>
     <description><![CDATA[1. 前期环境准备及注意事项 首先环境用宿主机方式、docker方式、以及kubernetes方式搭建的Jenkins都是可以的.如果用kuber]]></description>
 </item><item>
     <title>Golang介绍</title>
-    <link>https://example.com/golang%E4%BB%8B%E7%BB%8D/</link>
+    <link>https://currylinux.github.io/golang%E4%BB%8B%E7%BB%8D/</link>
     <pubDate>Tue, 16 Jun 2020 23:30:05 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/golang%E4%BB%8B%E7%BB%8D/</guid>
+    <guid>https://currylinux.github.io/golang%E4%BB%8B%E7%BB%8D/</guid>
     <description><![CDATA[1. 初识GO语言 Go是一门开放源码的编程语言,可容易的构建简单,可靠和高效的软件 ⭐ 开发者使用编程语言的三大分类(执行速度、简易程度、开发难度)]]></description>
 </item><item>
     <title>单机K8s部署静态和动态Jenkins Slave</title>
-    <link>https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/</link>
+    <link>https://currylinux.github.io/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/</link>
     <pubDate>Mon, 15 Jun 2020 01:01:03 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/</guid>
+    <guid>https://currylinux.github.io/%E5%8D%95%E6%9C%BAk8s%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81jenkins-slave/</guid>
     <description><![CDATA[1. 部署静态Jenkins Slave 静态slave是在k8s中创建一个固定pod运行,首先需要登录Jenkins,并创建agent,获取secret信]]></description>
 </item><item>
     <title>Docker Compose实现Gogs服务部署</title>
-    <link>https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/</link>
+    <link>https://currylinux.github.io/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/</link>
     <pubDate>Fri, 12 Jun 2020 16:56:50 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/</guid>
+    <guid>https://currylinux.github.io/docker-compose%E5%AE%9E%E7%8E%B0gogs%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2/</guid>
     <description><![CDATA[1. Gogs简单介绍 Gogs简单介绍 1 2 3 4 5 什么是Gogs? Gogs 是一款极易搭建的自助 Git 服务。 开发目的: Gogs 的目标是打造一个最简单、最快速和最轻松]]></description>
 </item><item>
     <title>Kubernetes部署Dashboard--并支持Chrome浏览器</title>
-    <link>https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/</link>
+    <link>https://currylinux.github.io/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/</link>
     <pubDate>Fri, 12 Jun 2020 14:09:41 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/</guid>
+    <guid>https://currylinux.github.io/kubernetes%E9%83%A8%E7%BD%B2dashboard%E5%B9%B6%E6%94%AF%E6%8C%81chrome%E8%AE%BF%E9%97%AE/</guid>
     <description><![CDATA[1. Dashboard前期部署 v1.16.2版本的k8s需要安装最新的2.0+ 版本Dashboard 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21]]></description>
 </item><item>
     <title>K8s单机部署Jenkins</title>
-    <link>https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/</link>
+    <link>https://currylinux.github.io/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/</link>
     <pubDate>Fri, 12 Jun 2020 02:55:29 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/</guid>
+    <guid>https://currylinux.github.io/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/</guid>
     <description><![CDATA[No.1 kubeadm安装单机版k8s前期准备 1个节点,Centos7.7系统,在节点上添加hosts信息 1 2 cat /etc/hosts 10.8.8.8 kubernetes-master 禁用防火墙,并且禁用SELI]]></description>
 </item><item>
     <title>Docker Compose部署Nexus</title>
-    <link>https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/</link>
+    <link>https://currylinux.github.io/docker-compose%E9%83%A8%E7%BD%B2nexus/</link>
     <pubDate>Thu, 04 Jun 2020 21:50:22 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/</guid>
+    <guid>https://currylinux.github.io/docker-compose%E9%83%A8%E7%BD%B2nexus/</guid>
     <description><![CDATA[No.1 Nexus 基本概念之组件 1 2 3 4 简单说明下Nexus,理解为私服仓库:本地maven私服加快构建速度 代理仓库:将公网等第三方提供的仓库代理到本地.]]></description>
 </item><item>
     <title>Docker和Docker Compose安装</title>
-    <link>https://example.com/docker%E5%92%8Cdocker-compose%E5%AE%89%E8%A3%85/</link>
+    <link>https://currylinux.github.io/docker%E5%92%8Cdocker-compose%E5%AE%89%E8%A3%85/</link>
     <pubDate>Thu, 04 Jun 2020 17:27:51 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/docker%E5%92%8Cdocker-compose%E5%AE%89%E8%A3%85/</guid>
+    <guid>https://currylinux.github.io/docker%E5%92%8Cdocker-compose%E5%AE%89%E8%A3%85/</guid>
     <description><![CDATA[No.1 脚本化部署安装docker 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 [root@xxx ~]# cat docker.sh #!/bin/bash DOCKER_VERSION=docker-ce-18.09.9 DOCKER_CLIENT=docker-ce-cli-18.09.9 # remove]]></description>
 </item><item>
     <title>Hugo你的专属Blog</title>
-    <link>https://example.com/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</link>
+    <link>https://currylinux.github.io/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</link>
     <pubDate>Thu, 04 Jun 2020 14:48:33 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://example.com/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</guid>
+    <guid>https://currylinux.github.io/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</guid>
     <description><![CDATA[第一章 简单说明 1 2 3 首先简单说明下,搭建过程容易,重点是主题的选择,下面也会附上我使用的主题地址. 有一点Linux基础的话,相对操作要容易一]]></description>
 </item></channel>
 </rss>

@@ -8,17 +8,17 @@
         <title>Docker Compose部署Nexus - Curry Linux</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Docker Compose部署Nexus" />
 <meta property="og:description" content="No.1 Nexus 基本概念之组件 1 2 3 4 简单说明下Nexus,理解为私服仓库:本地maven私服加快构建速度 代理仓库:将公网等第三方提供的仓库代理到本地." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/" />
-<meta property="og:image" content="https://example.com/logo.png"/>
+<meta property="og:url" content="https://currylinux.github.io/docker-compose%E9%83%A8%E7%BD%B2nexus/" />
+<meta property="og:image" content="https://currylinux.github.io/logo.png"/>
 <meta property="article:published_time" content="2020-06-04T21:50:22+08:00" />
 <meta property="article:modified_time" content="2020-06-04T21:50:22+08:00" />
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://example.com/logo.png"/>
+<meta name="twitter:image" content="https://currylinux.github.io/logo.png"/>
 
 <meta name="twitter:title" content="Docker Compose部署Nexus"/>
 <meta name="twitter:description" content="No.1 Nexus 基本概念之组件 1 2 3 4 简单说明下Nexus,理解为私服仓库:本地maven私服加快构建速度 代理仓库:将公网等第三方提供的仓库代理到本地."/>
 <meta name="application-name" content="Curry Linux">
-<meta name="apple-mobile-web-app-title" content="Curry Linux"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/curry1.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/" /><link rel="prev" href="https://example.com/docker%E5%92%8Cdocker-compose%E5%AE%89%E8%A3%85/" /><link rel="next" href="https://example.com/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="Curry Linux"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/images/curry1.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://currylinux.github.io/docker-compose%E9%83%A8%E7%BD%B2nexus/" /><link rel="prev" href="https://currylinux.github.io/docker%E5%92%8Cdocker-compose%E5%AE%89%E8%A3%85/" /><link rel="next" href="https://currylinux.github.io/k8s%E5%8D%95%E6%9C%BA%E9%83%A8%E7%BD%B2jenkins/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -26,11 +26,11 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/example.com\/docker-compose%E9%83%A8%E7%BD%B2nexus\/"
-        },"image": ["https:\/\/example.com\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Docker","wordcount":  697 ,
-        "url": "https:\/\/example.com\/docker-compose%E9%83%A8%E7%BD%B2nexus\/","datePublished": "2020-06-04T21:50:22+08:00","dateModified": "2020-06-04T21:50:22+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/currylinux.github.io\/docker-compose%E9%83%A8%E7%BD%B2nexus\/"
+        },"image": ["https:\/\/currylinux.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Docker","wordcount":  697 ,
+        "url": "https:\/\/currylinux.github.io\/docker-compose%E9%83%A8%E7%BD%B2nexus\/","datePublished": "2020-06-04T21:50:22+08:00","dateModified": "2020-06-04T21:50:22+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
-            "name": "xxxx","logo": "https:\/\/example.com\/images\/avatar.png"},"author": {
+            "name": "xxxx","logo": "https:\/\/currylinux.github.io\/images\/avatar.png"},"author": {
                 "@type": "Person",
                 "name": "Curry"
             },"description": ""
@@ -44,7 +44,7 @@
             <a href="/" title="Curry Linux">Curry Linux</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
                         <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/docker-compose%E9%83%A8%E7%BD%B2nexus/" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
@@ -89,7 +89,7 @@
                     <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="javascript:void(0);" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
                     <select class="language-select" onchange="location = this.value;"><option value="/docker-compose%E9%83%A8%E7%BD%B2nexus/" selected>简体中文</option></select>
@@ -356,7 +356,7 @@ Compose部署Nexus: https://blog.csdn.net/tiancxz/article/details/104197060
                             <a class="link-to-markdown" href="/docker-compose%E9%83%A8%E7%BD%B2nexus/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/" data-title="Docker Compose部署Nexus" data-hashtags="Docker"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/" data-hashtag="Docker"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/" data-title="Docker Compose部署Nexus"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/" data-title="Docker Compose部署Nexus"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://example.com/docker-compose%E9%83%A8%E7%BD%B2nexus/" data-title="Docker Compose部署Nexus"><i class="fab fa-weibo fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://currylinux.github.io/docker-compose%E9%83%A8%E7%BD%B2nexus/" data-title="Docker Compose部署Nexus" data-hashtags="Docker"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://currylinux.github.io/docker-compose%E9%83%A8%E7%BD%B2nexus/" data-hashtag="Docker"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://currylinux.github.io/docker-compose%E9%83%A8%E7%BD%B2nexus/" data-title="Docker Compose部署Nexus"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://currylinux.github.io/docker-compose%E9%83%A8%E7%BD%B2nexus/" data-title="Docker Compose部署Nexus"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://currylinux.github.io/docker-compose%E9%83%A8%E7%BD%B2nexus/" data-title="Docker Compose部署Nexus"><i class="fab fa-weibo fa-fw"></i></a></span>
             </div>
         </div>
     </div>
