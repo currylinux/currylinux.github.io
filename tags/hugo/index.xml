@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Hugo - 标签 - Curry Linux</title>
+        <link>https://example.com/tags/hugo/</link>
+        <description>Hugo - 标签 - Curry Linux</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 04 Jun 2020 14:48:33 &#43;0800</lastBuildDate><atom:link href="https://example.com/tags/hugo/" rel="self" type="application/rss+xml" /><item>
+    <title>Hugo你的专属Blog</title>
+    <link>https://example.com/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</link>
+    <pubDate>Thu, 04 Jun 2020 14:48:33 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://example.com/hugo%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9Eblog/</guid>
+    <description><![CDATA[第一章 简单说明 1 2 3 首先简单说明下,搭建过程容易,重点是主题的选择,下面也会附上我使用的主题地址. 有一点Linux基础的话,相对操作要容易一]]></description>
+</item></channel>
+</rss>
